@@ -26,7 +26,10 @@ object UserController extends Controller {
     implicit request =>
       val receivedForm = userForm.bindFromRequest()
       if (receivedForm.hasErrors) BadRequest(views.html.requestUser.render(receivedForm))
-      else Redirect("/UserList")
+      else {
+        receivedForm.get.toUser.save()
+        Redirect("/UserList")
+      }
 
   }
 

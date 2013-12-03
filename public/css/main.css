@@ -132,6 +132,12 @@ body {
 
 .Table td {
     padding: 5px;
+    text-align: center;
+}
+.Table {
+    width: 80%;
+    margin: auto;
+    border: #222222 solid thin;
 }
 
 /* ==========================================================================
