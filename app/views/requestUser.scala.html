@@ -1,0 +1,29 @@
+@(userForm : play.api.data.Form[controllers.casemodels.UserData])
+@import helper._
+
+
+@boilerplate("New User"){
+
+@if(userForm.hasGlobalErrors) {
+
+<ul>
+    @userForm.globalErrors.foreach { error =>
+    <li>error.message</li>
+    }
+</ul>
+}
+@form(action = controllers.routes.UserController.processUser,'class->"Form1") {
+
+@inputText( userForm("email"), 'size -> 16  ,'_label -> "Email")
+@inputText( userForm("name")                ,'_label -> "Name" )
+@inputText( userForm("surname")             ,'_label -> "Surname" )
+@inputPassword( userForm("password")        ,'_label -> "Password" )
+@inputRadioGroup(userForm("role"), options = Seq("student"->"Student","teacher"->"Teacher","personnel"->"Personnel","headmaster"->"Headmaster"),
+'_label -> "Role")
+
+
+<input type="submit" value="Create">
+
+}
+
+}
