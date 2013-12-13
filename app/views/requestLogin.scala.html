@@ -1,0 +1,32 @@
+@(userForm : play.api.data.Form[(String,String)])(implicit session : play.api.mvc.Session)
+@import helper._
+
+
+@boilerplate("Log In"){
+
+        @if(userForm.hasGlobalErrors) {
+
+        <ul>
+            @userForm.globalErrors.foreach { error =>
+            <li>error.message</li>
+            }
+        </ul>
+        }
+
+        @form(action = controllers.routes.LoginController.processLogin,'class->"Form LoginForm") {
+        <fieldset>
+                @inputText(
+                    userForm("email"),
+                    '_label -> "Email",
+                    '_showConstraints -> false
+                )
+                @inputPassword(
+                    userForm("password"),
+                    '_label -> "Password",
+                    '_showConstraints -> false
+                )
+        </fieldset>
+        <input type="submit" value="Create" id="btn-submit">
+        }
+
+}

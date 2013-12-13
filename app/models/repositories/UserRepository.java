@@ -1,8 +1,10 @@
 package models.repositories;
 
 import models.User;
-import play.data.Form;
 import play.db.ebean.Model;
+import scala.Option;
+import scala.Some;
+import scalalang.ScalaLang;
 
 import java.util.List;
 
@@ -18,11 +20,28 @@ public class UserRepository {
     }
 
     public static void commit(User user) {
+        if(find.byId(user.email) == null)
         user.save();
+        else
+        user.update();
     }
 
-    public static Form<User> getForm() {
-        return Form.form(User.class);
+    public static void removeUser(String email){
+        User user = find.byId(email);
+        if(user!=null) user.delete();
+    }
+
+    public static Option<User> findByEmail(String email){
+        User user = find.byId(email);
+        if(user!=null)
+            return new Some(user);
+        else
+            return ScalaLang.<User>none();
+
+    }
+
+    public static boolean isRegistered(String email){
+        return find.byId(email) != null;
     }
 
 }

@@ -3,54 +3,53 @@ package controllers
 import casemodels.UserData
 import play.api.mvc._
 import models.repositories.UserRepository
-import models.User
-
-import play.api.mvc.Request
-import play.api.data._
-import play.api.data.Forms._
-import scala.collection.JavaConversions._
-import collection.mutable.ArrayBuffer
-
-
-/**
- * Date: 12/2/13
- */
 
 
 object UserController extends Controller {
 
-  val userForm = UserData.userForm
+  /*
+   *  Post actions are represented by two methods request and process
+   *  request methods display required form
+   *  form is then processed in the process method
+   *  The validation is handled in the form definition (UserData, LoginData)
+   *  TODO add authorization check
+   *  TODO add error email handler
+   */
 
-
-  def processUser = Action {
-    implicit request =>
-      val receivedForm = userForm.bindFromRequest()
-      if (receivedForm.hasErrors) BadRequest(views.html.requestUser.render(receivedForm))
-      else {
-        receivedForm.get.toUser.save()
-        Redirect("/UserList")
-      }
-
+  def process(data : UserData) : Result = {
+      UserRepository commit data
+      Redirect(routes.UserController.viewUserList)
   }
 
-  def requestUser = Action {
-    Ok(views.html.requestUser.render(userForm))
-
+  def processNewUser = Action { implicit request =>
+      UserData.userCreateForm.bindFromRequest().fold(
+        formWithErrors => BadRequest(views.html.requestNewUser(formWithErrors)),
+        correctUserData => process(correctUserData)
+      )
   }
 
-  /*def editUser = Action {
-     Ok("Ok")
-  } */
-
-  def removeUser(login: String) = Action {
-    UserRepository.find.byId(login).delete()
-    Redirect("/UserList")
+  def requestNewUser = Action { implicit request =>
+      Ok(views.html.requestNewUser.render( UserData.userCreateForm,session ))
   }
 
-  def viewUserList = Action {
+  def processEditUser = Action { implicit request =>
+      UserData.userEditForm.bindFromRequest().fold(
+        formWithErrors => BadRequest(views.html.requestEditUser(formWithErrors)),
+        correctUserData => process(correctUserData)
+      )
+  }
 
-    val userSet = UserRepository.all()
-    Ok(views.html.viewUserList.render(userSet.map(_.toUserData).toArray))
+  def requestEditUser(email : String) = Action { implicit request =>
+      Ok(views.html.requestEditUser.render(UserData.userEditForm fill( UserRepository.findByEmail(email).get ),session ))
+  }
+
+  def removeUser(email: String) = Action {
+      UserRepository removeUser email
+      Redirect(routes.UserController.viewUserList)
+  }
+
+  def viewUserList = Action { implicit request =>
+      Ok(views.html.viewUserList.render( UserData.userDataSet ,session))
   }
 
 }

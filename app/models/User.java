@@ -22,17 +22,9 @@ public class User extends Model {
     @Id
 
     public String email;
-
     public String name;
-
     public String surname;
-
     public String password;
-
     public String role;
-
-    public UserData toUserData() {
-        return new UserData(email, name, surname, password, role);
-    }
 
 }

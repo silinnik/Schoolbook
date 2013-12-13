@@ -135,9 +135,17 @@ body {
     text-align: center;
 }
 .Table {
-    width: 80%;
+    width: 100%;
     margin: auto;
     border: #222222 solid thin;
+}
+
+dd.error {
+    border: thin #a52a2a dashed;
+    display: inline-block;
+    border-radius: 13px;
+    padding: 2px;
+    font-size: 15px;
 }
 
 /* ==========================================================================

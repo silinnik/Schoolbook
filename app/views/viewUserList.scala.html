@@ -1,5 +1,4 @@
-@(userArray : Array[controllers.casemodels.UserData])
-
+@(userArray : Array[controllers.casemodels.UserData])(implicit session : play.api.mvc.Session)
 
 @boilerplate("User List"){
 
@@ -11,6 +10,7 @@
         <th>Name</th>
         <th>Surname</th>
         <th>Role</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -19,16 +19,25 @@
 
     <tr>
         <td><input type="checkbox" name="@user.email">&nbsp;</td>
-        <td>@user.email</td>
+        <td>
+            <a href="@controllers.routes.UserController.requestEditUser(user.email)">
+            @user.email
+            </a>
+        </td>
         <td>@user.name</td>
         <td>@user.surname</td>
         <td>@user.role.capitalize</td>
+        <td><form method="get" action="/DeleteUser/@user.email">
+            <button type="submit" id="btn-remove">Remove</button>
+        </form></td>
     </tr>
 
     }
 
     </tbody>
 </table>
-
+<form method="get" action="/AddUser">
+    <button type="submit" id="btn-create">Create</button>
+</form>
 
 }

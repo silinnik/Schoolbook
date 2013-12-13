@@ -1,0 +1,51 @@
+@(userForm : play.api.data.Form[controllers.casemodels.UserData])(implicit session : play.api.mvc.Session)
+@import helper._
+
+
+@boilerplate("Edit User"){
+
+    @if(userForm.hasGlobalErrors) {
+        <ul>
+            @userForm.globalErrors.foreach { error =>
+            <li>error.message</li>
+            }
+        </ul>
+        }
+
+        @form(action = controllers.routes.UserController.processEditUser,'class->"Form1") {
+
+            @inputText(
+                userForm("email"),
+                'size -> 16  ,
+                '_label -> "Email",
+                'readonly -> "readonly"
+            )
+            @inputText(
+                userForm("name")
+                ,'_label -> "Name"
+            )
+            @inputText(
+                userForm("surname")
+                ,'_label -> "Surname"
+            )
+            @inputPassword(
+                userForm("password.main")
+                ,'_label -> "New Password"
+            )
+            @inputPassword(
+                userForm("password.confirm")
+                ,'_label -> "Confirm Password"
+            )
+
+            @inputRadioGroup(
+                userForm("role"),
+                options = controllers.casemodels.UserData.RoleOptions,
+                '_label -> "Role"
+            )
+
+
+        <input type="submit" value="Create" id="btn-submit">
+
+    }
+
+}
