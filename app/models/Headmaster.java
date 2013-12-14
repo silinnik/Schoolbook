@@ -21,5 +21,9 @@ public class Headmaster extends User {
 	public void setHeadmaster_id(int headmaster_id) {
 		this.headmaster_id = headmaster_id;
 	}
+
+        public Headmaster(){
+super();
+}
    
 }

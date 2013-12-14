@@ -11,6 +11,10 @@ import javax.persistence.*;
 
 public class Teacher extends User {
 
+public Teacher(){
+super();
+}
+
 @Id
 @GeneratedValue( strategy = GenerationType.IDENTITY )
 private int teacher_id;

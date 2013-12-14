@@ -14,5 +14,9 @@ public class Student extends User {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private int student_id;
+
+public Student(){
+super();
+}
 	
 }
