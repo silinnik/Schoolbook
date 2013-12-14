@@ -53,11 +53,11 @@ public class Event extends Model {
 		this.event_id = event_id;
 	}
 
-	public Collection<User> getPeople() {
+	public ArrayList<User> getPeople() {
 		return people;
 	}
 
-	public void setPeople(Collection<User> people) {
+	public void setPeople(ArrayList<User> people) {
 		this.people = people;
 	}
 
