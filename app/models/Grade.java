@@ -1,4 +1,4 @@
-package models;
+
 import play.db.ebean.Model;
 
 import java.io.Serializable;
@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 
-public class Graduate extends Model {
+public class Grade extends Model {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
@@ -29,11 +29,11 @@ public class Graduate extends Model {
 	@Column
 	String grade_annotation;
 
-	public long getGraduation_id() {
+	public long getGrade_id() {
 		return graduation_id;
 	}
 
-	public void setGraduation_id(long graduation_id) {
+	public void setGrade_id(long graduation_id) {
 		this.graduation_id = graduation_id;
 	}
 
@@ -69,7 +69,7 @@ public class Graduate extends Model {
 		this.grade_annotation = grade_annotation;
 	}
 
-	public Graduate(Student student, TimetableEntry timetable_entry,
+	public Grade(Student student, TimetableEntry timetable_entry,
 			int grade_value, String grade_annotation) {
 		super();
 		this.student = student;

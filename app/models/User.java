@@ -29,7 +29,8 @@ public class User extends Model {
 	@Column(nullable=false)
 	private String password;
 	
-	
+	@Column(name="user_type", nullable=false, updatable=false, insertable=false)
+	private String user_type;
 	
 	public User(String login, String name, String surname, String password) {
 		this.login = login;
@@ -76,6 +77,10 @@ public class User extends Model {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getType(){
+		return this.user_type;
 	}
    
 }

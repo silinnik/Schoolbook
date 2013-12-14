@@ -2,6 +2,7 @@ package models;
 import play.db.ebean.Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -34,6 +35,8 @@ public class TimetableEntry extends Model {
 	  @JoinColumn(name="timetable_entry")
 	private Homework homework;
 	
+	@OneToMany(mappedBy = "timetable_entry")
+	private ArrayList<Grade> grades;
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -79,8 +82,14 @@ public class TimetableEntry extends Model {
 	}
 
 	public TimetableEntry(Date time, Group group, Teacher teacher,
-			Subject subject, Homework homework) {
+			Subject subject, Homework homework, ArrayList<Grade> grades) {
 		super();
+		if(grades!=null){
+			this.grades = grades;
+		}
+		else{
+			this.grades = new ArrayList<Grade>();
+		}
 		this.time = time;
 		this.group = group;
 		this.teacher = teacher;
