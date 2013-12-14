@@ -2,7 +2,7 @@ package models;
 import play.db.ebean.Model;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.ArrayList;
 
 import javax.persistence.*;
 
@@ -18,14 +18,14 @@ public class Group extends Model {
 	private int group_id;
 	
 	@OneToMany(mappedBy = "group")
-	private Collection<TimetableEntry> timetable_entries;
+	private ArrayList<TimetableEntry> timetable_entries;
 	
 	@Column(nullable = false)
 	private String name;
 	
 	@JoinTable(name="student_group")
 	@ManyToMany
-	private Collection<Student> students;
+	private ArrayList<Student> students;
 	
 	public int getGroup_id() {
 		return group_id;
@@ -35,11 +35,11 @@ public class Group extends Model {
 		this.group_id = group_id;
 	}
 
-	public Collection<TimetableEntry> getTimetable_entries() {
+	public ArrayList<TimetableEntry> getTimetable_entries() {
 		return timetable_entries;
 	}
 
-	public void setTimetable_entries(Collection<TimetableEntry> timetable_entries) {
+	public void setTimetable_entries(ArrayList<TimetableEntry> timetable_entries) {
 		this.timetable_entries = timetable_entries;
 	}
 
@@ -51,12 +51,18 @@ public class Group extends Model {
 		this.name = name;
 	}
 
-	public Group(Collection<TimetableEntry> timetable_entries, String name,
-			Collection<Student> students) {
+	public Group(ArrayList<TimetableEntry> timetable_entries, String name,
+			ArrayList<Student> students) {
 		super();
+		if(timetable_entries!=null){
 		this.timetable_entries = timetable_entries;
+		}
+		else this.timetable_entries = new ArrayList<TimetableEntry>();
 		this.name = name;
+		if(students!=null){
 		this.students = students;
+	}
+	else this.students = new ArrayList<Student>();
 	}
 	
 	
