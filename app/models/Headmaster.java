@@ -25,7 +25,7 @@ public class Headmaster extends User {
 	}
 	
 	public Headmaster (String login, String name, String surname, String password){
-		super(login, name, surname, password, 'H');
+		super(login, name, surname, password);
 	}
 
    

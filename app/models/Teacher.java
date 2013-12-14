@@ -25,7 +25,7 @@ public void setTeacher_id(int teacher_id) {
 }
 
 public Teacher(String login, String name, String surname, String password){
-	super(login, name, surname, password, 'T');
+	super(login, name, surname, password);
 }
 
 }

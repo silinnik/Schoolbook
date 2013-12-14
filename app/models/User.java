@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class User extends Model {
 
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int user_id;
 	
 	@Column(nullable=false)
@@ -29,11 +29,9 @@ public class User extends Model {
 	@Column(nullable=false)
 	private String password;
 	
-	@Column(nullable=false)
-	private char user_type;
 	
-	public User(String login, String name, String surname, String password, char user_type) {
-		this.user_type = user_type;
+	
+	public User(String login, String name, String surname, String password) {
 		this.login = login;
 		this.name = name;
 		this.surname = surname;
@@ -79,15 +77,5 @@ public class User extends Model {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public char getUser_type() {
-		return user_type;
-	}
-
-	public void setUser_type(char user_type) {
-		this.user_type = user_type;
-	}
-	
-	
    
 }

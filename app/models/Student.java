@@ -17,7 +17,7 @@ public class Student extends User {
 	private int student_id;
 	
 	public Student(String login, String name, String surname, String password){
-		super(login, name, surname, password, 'S');
+		super(login, name, surname, password);
 	}
 
 	
