@@ -8,8 +8,8 @@ import org.mindrot.jbcrypt.BCrypt
 */
 object Authenticator {
   def authenticateLoginData( nameAndPassword : (String,String)) =
-        UserRepository.findByEmail(nameAndPassword._1) match {
-          case Some(user) => BCrypt.checkpw(nameAndPassword._2,user.password)
+        UserRepository.findByLogin(nameAndPassword._1) match {
+          case Some(user) => BCrypt.checkpw(nameAndPassword._2,user.getPassword)
           case _=> false
         }
 }

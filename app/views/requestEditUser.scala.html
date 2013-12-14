@@ -1,8 +1,8 @@
-@(userForm : play.api.data.Form[controllers.casemodels.UserData])(implicit session : play.api.mvc.Session)
+@(userForm : play.api.data.Form[models.User]) (implicit request: play.api.mvc.Request[Any])
 @import helper._
+@import controllers.formsdata.UserData._
 
-
-@boilerplate("Edit User"){
+@base("Edit User"){
 
     @if(userForm.hasGlobalErrors) {
         <ul>
@@ -39,7 +39,7 @@
 
             @inputRadioGroup(
                 userForm("role"),
-                options = controllers.casemodels.UserData.RoleOptions,
+                options = RoleOptions,
                 '_label -> "Role"
             )
 

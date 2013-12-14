@@ -1,43 +1,10 @@
-@(userArray : Array[controllers.casemodels.UserData])(implicit session : play.api.mvc.Session)
+@(userArray : Array[User]) (implicit request: play.api.mvc.Request[Any])
+@import models._
 
-@boilerplate("User List"){
 
-<table class="Table UserTable">
-    <thead>
-    <tr>
-        <th></th>
-        <th>Email</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Role</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
+@base("User List"){
 
-    @for(user <- userArray){
 
-    <tr>
-        <td><input type="checkbox" name="@user.email">&nbsp;</td>
-        <td>
-            <a href="@controllers.routes.UserController.requestEditUser(user.email)">
-            @user.email
-            </a>
-        </td>
-        <td>@user.name</td>
-        <td>@user.surname</td>
-        <td>@user.role.capitalize</td>
-        <td><form method="get" action="/DeleteUser/@user.email">
-            <button type="submit" id="btn-remove">Remove</button>
-        </form></td>
-    </tr>
-
-    }
-
-    </tbody>
-</table>
-<form method="get" action="/AddUser">
-    <button type="submit" id="btn-create">Create</button>
-</form>
+       @userlist(userArray)
 
 }

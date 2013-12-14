@@ -7,10 +7,10 @@
 GET     /AddUser                    controllers.UserController.requestNewUser()
 POST    /AddUser                    controllers.UserController.processNewUser()
 
-GET     /EditUser/:email            controllers.UserController.requestEditUser(email : String)
+GET     /EditUser/:userId            controllers.UserController.requestEditUser(userId : Int)
 POST    /EditUser/                  controllers.UserController.processEditUser()
 
-GET     /DeleteUser/:email          controllers.UserController.removeUser(email:String)
+GET     /DeleteUser/:userId          controllers.UserController.removeUser(userId:Int)
 
 GET     /UserList                   controllers.UserController.viewUserList()
 
@@ -25,4 +25,4 @@ GET     /css/*file                  controllers.Assets.at(path="/public/css", fi
 GET     /js/*file                   controllers.Assets.at(path="/public/js", file)
 GET     /webjars/*file              controllers.WebJarAssets.at(file)
 
-GET     /                           controllers.UserController.viewUserList()
+GET     /                           controllers.UserController.todo()

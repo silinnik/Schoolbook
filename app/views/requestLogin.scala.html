@@ -1,8 +1,8 @@
-@(userForm : play.api.data.Form[(String,String)])(implicit session : play.api.mvc.Session)
+@(userForm : play.api.data.Form[(String,String)]) (implicit request: play.api.mvc.Request[Any])
 @import helper._
 
 
-@boilerplate("Log In"){
+@base("Log In"){
 
         @if(userForm.hasGlobalErrors) {
 

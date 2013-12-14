@@ -1,8 +1,8 @@
-@(userForm : play.api.data.Form[controllers.casemodels.UserData])(implicit session : play.api.mvc.Session)
+@(userForm : play.api.data.Form[User]) (implicit request: play.api.mvc.Request[Any])
 @import helper._
-
-
-@boilerplate("New User"){
+@import models._
+@import controllers.formsdata.UserData._
+@base("New User"){
 
     @if(userForm.hasGlobalErrors) {
     <ul>
@@ -11,6 +11,8 @@
         }
     </ul>
     }
+
+    @session.get("TEST")
 
     @form(action = controllers.routes.UserController.processNewUser,'class->"Form1") {
 
@@ -38,7 +40,7 @@
 
                 @inputRadioGroup(
                     userForm("role"),
-                    options = controllers.casemodels.UserData.RoleOptions,
+                    options = RoleOptions,
                     '_label -> "Role"
                 )
 

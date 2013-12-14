@@ -1,4 +1,5 @@
-package controllers.casemodels
+package controllers.formsdata
+
 
 import play.api.data.Form
 import play.api.data.Forms._
@@ -14,7 +15,7 @@ object LoginData {
 
   val loginForm = Form(
     tuple (
-      "email" -> email,
+      "login" -> email,
       "password" -> nonEmptyText(8, 16)
     ).verifying( t => Authenticator.authenticateLoginData(t) )
 
