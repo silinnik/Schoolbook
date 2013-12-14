@@ -1,5 +1,5 @@
 package models;
-
+import play.db.ebean.Model;
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -9,8 +9,9 @@ import javax.persistence.*;
  *
  */
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-public class User implements Serializable {
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="user_type")
+public class User extends Model {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
@@ -28,7 +29,11 @@ public class User implements Serializable {
 	@Column(nullable=false)
 	private String password;
 	
-	public User(String login, String name, String surname, String password) {
+	@Column(nullable=false)
+	private char user_type;
+	
+	public User(String login, String name, String surname, String password, char user_type) {
+		this.user_type = user_type;
 		this.login = login;
 		this.name = name;
 		this.surname = surname;
@@ -74,5 +79,15 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public char getUser_type() {
+		return user_type;
+	}
+
+	public void setUser_type(char user_type) {
+		this.user_type = user_type;
+	}
+	
+	
    
 }

@@ -8,14 +8,10 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+@DiscriminatorValue("T")
 public class Teacher extends User {
 
-public Teacher(){
-super();
-}
-
-@Id
+@Column(nullable=false)
 @GeneratedValue( strategy = GenerationType.IDENTITY )
 private int teacher_id;
 
@@ -28,6 +24,8 @@ public void setTeacher_id(int teacher_id) {
 	this.teacher_id = teacher_id;
 }
 
+public Teacher(String login, String name, String surname, String password){
+	super(login, name, surname, password, 'T');
+}
 
-   
 }

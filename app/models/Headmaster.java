@@ -1,4 +1,5 @@
 package models;
+
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -8,9 +9,10 @@ import javax.persistence.*;
  *
  */
 @Entity
+@DiscriminatorValue("H")
 public class Headmaster extends User {
 
-	@Id
+	@Column(nullable=false)
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private int headmaster_id;
 
@@ -21,9 +23,10 @@ public class Headmaster extends User {
 	public void setHeadmaster_id(int headmaster_id) {
 		this.headmaster_id = headmaster_id;
 	}
+	
+	public Headmaster (String login, String name, String surname, String password){
+		super(login, name, surname, password, 'H');
+	}
 
-        public Headmaster(){
-super();
-}
    
 }
