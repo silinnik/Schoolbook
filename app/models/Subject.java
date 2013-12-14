@@ -1,5 +1,7 @@
 package models;
 
+import play.db.ebean.Model;
+
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -9,7 +11,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-public class Subject implements Serializable {
+public class Subject extends Model {
 
 	
 	private static final long serialVersionUID = 1L;

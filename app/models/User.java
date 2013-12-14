@@ -29,7 +29,6 @@ public class User implements Serializable {
 	private String password;
 	
 	public User(String login, String name, String surname, String password) {
-		super();
 		this.login = login;
 		this.name = name;
 		this.surname = surname;

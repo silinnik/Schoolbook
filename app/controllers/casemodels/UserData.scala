@@ -78,7 +78,6 @@ object UserData {
   val RoleOptions = Seq(
     "Student"->"Student",
     "Teacher"->"Teacher",
-    "Personnel"->"Personnel",
     "Headmaster"->"Headmaster")
 
 }
