@@ -11,6 +11,7 @@ import javax.persistence.*;
  *
  */
 @Entity
+@Table(name="GROUPP")
 public class Group extends Model {
 
 	@Id
