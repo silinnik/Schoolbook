@@ -1,4 +1,5 @@
 package models;
+import play.db.ebean.Model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 
-public class TimetableEntry implements Serializable {
+public class TimetableEntry extends Model {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )

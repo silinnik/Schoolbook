@@ -1,4 +1,5 @@
 package models;
+import play.db.ebean.Model;
 
 import java.io.Serializable;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 
-public class Graduate implements Serializable {
+public class Graduate extends Model {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
