@@ -1,38 +1,79 @@
 package models;
 
-import controllers.casemodels.UserData;
-import play.db.ebean.Model;
+import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Date: 12/2/13
+ * Entity implementation class for Entity: User
+ *
  */
 @Entity
-public class User extends Model {
-    public User(String email, String name, String surname, String password, String role) {
-        this.email = email;
-        this.name = name;
-        this.surname = surname;
-        this.password = password;
-        this.role = role;
-    }
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+public class User implements Serializable {
 
-    @Id
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	private int user_id;
+	
+	@Column(nullable=false)
+	private String login;
+	
+	@Column(nullable=false)
+	private String name;
+	
+	@Column(nullable=false)
+	private String surname;
+	
+	@Column(nullable=false)
+	private String password;
+	
+	public User(String login, String name, String surname, String password) {
+		super();
+		this.login = login;
+		this.name = name;
+		this.surname = surname;
+		this.password = password;
+	}
 
-    public String email;
+	public int getUser_id() {
+		return user_id;
+	}
 
-    public String name;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
 
-    public String surname;
+	public String getLogin() {
+		return login;
+	}
 
-    public String password;
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
-    public String role;
+	public String getName() {
+		return name;
+	}
 
-    public UserData toUserData() {
-        return new UserData(email, name, surname, password, role);
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+   
 }
