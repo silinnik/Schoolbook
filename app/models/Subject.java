@@ -1,8 +1,6 @@
 package models;
 import play.db.ebean.Model;
 
-import play.db.ebean.Model;
-
 import java.io.Serializable;
 
 import javax.persistence.*;
