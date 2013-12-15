@@ -97,6 +97,8 @@ public class TimetableEntry extends Model {
 		this.homework = homework;
 	}
 	
+	public TimetableEntry(){}
+	
 	
    
 }

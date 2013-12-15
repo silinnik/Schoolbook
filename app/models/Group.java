@@ -66,6 +66,7 @@ public class Group extends Model {
 	else this.students = new ArrayList<Student>();
 	}
 	
-	
+	public Group(){
+	}
    
 }

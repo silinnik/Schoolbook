@@ -13,11 +13,13 @@ import javax.persistence.*;
 public class Student extends User {
    
 	@Column(nullable=false)
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int student_id;
 	
 	public Student(String login, String name, String surname, String password){
 		super(login, name, surname, password);
+	}
+	public Student(){
 	}
 
 	

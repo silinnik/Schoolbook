@@ -12,6 +12,8 @@ import javax.persistence.*;
 @DiscriminatorValue("H")
 public class Headmaster extends User {
 
+
+
 	@Column(nullable=false)
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private int headmaster_id;
@@ -22,6 +24,10 @@ public class Headmaster extends User {
 
 	public void setHeadmaster_id(int headmaster_id) {
 		this.headmaster_id = headmaster_id;
+	}
+	
+	public Headmaster(){
+	
 	}
 	
 	public Headmaster (String login, String name, String surname, String password){

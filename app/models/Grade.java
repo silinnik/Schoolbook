@@ -13,6 +13,10 @@ import javax.persistence.*;
 
 public class Grade extends Model {
 
+public Grade(){
+
+}
+
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private long graduation_id;

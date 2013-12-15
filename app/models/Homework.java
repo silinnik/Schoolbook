@@ -42,6 +42,8 @@ public class Homework extends Model {
 		return homework_text;
 	}
 
+	public Homework(){}
+	
 	public void setHomework_text(String homework_text) {
 		this.homework_text = homework_text;
 	}

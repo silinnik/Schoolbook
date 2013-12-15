@@ -77,6 +77,7 @@ public class Event extends Model {
 		this.time = time;
 	}
 	
+	public Event(){}
 	
    
 }

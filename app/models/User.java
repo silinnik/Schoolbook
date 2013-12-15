@@ -117,5 +117,9 @@ public class User extends Model {
         return newStudent;
 
     }
+	
+	public User(){
+	
+	}
 
 }

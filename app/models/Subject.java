@@ -38,6 +38,8 @@ public class Subject extends Model {
 		this.subjectId = subjectId;
 	}
 
+	public Subject(){}
+	
 	public Subject(String name) {
 		super();
 		this.name = name;
