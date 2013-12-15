@@ -13,13 +13,21 @@ import javax.persistence.*;
 public class Student extends User {
    
 	@Column(nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int student_id;
 	
 	public Student(String login, String name, String surname, String password){
 		super(login, name, surname, password);
 	}
 	public Student(){
+	}
+	
+	public int getStudent_id() {
+		return student_id;
+	}
+
+	public void setStudent_id(int student_id) {
+		this.student_id = student_id;
 	}
 
 	
