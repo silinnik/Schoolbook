@@ -54,9 +54,9 @@ create table user (
   name                      varchar(255) not null,
   surname                   varchar(255) not null,
   password                  varchar(255) not null,
-  student_id                integer not null,
-  headmaster_id             integer not null,
-  teacher_id                integer not null,
+  student_id                integer,
+  headmaster_id             integer,
+  teacher_id                integer,
   constraint pk_user primary key (user_id))
 ;
 

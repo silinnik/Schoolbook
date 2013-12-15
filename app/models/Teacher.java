@@ -11,7 +11,7 @@ import javax.persistence.*;
 @DiscriminatorValue("T")
 public class Teacher extends User {
 
-@Column(nullable=false)
+@Column
 @GeneratedValue( strategy = GenerationType.IDENTITY )
 private int teacher_id;
 

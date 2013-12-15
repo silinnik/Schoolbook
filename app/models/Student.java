@@ -12,7 +12,7 @@ import javax.persistence.*;
 @DiscriminatorValue("S")
 public class Student extends User {
    
-	@Column(nullable=false)
+	@Column
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int student_id;
 	

@@ -14,7 +14,7 @@ public class Headmaster extends User {
 
 
 
-	@Column(nullable=false)
+	@Column
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private int headmaster_id;
 
