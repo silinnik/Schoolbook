@@ -19,7 +19,7 @@ object UserController extends Controller{
 
   def processNewUser = Action { implicit request =>
       UserData.userCreateForm.bindFromRequest().fold(
-        formWithErrors => BadRequest(views.html.requestNewUser.render(formWithErrors)),
+        formWithErrors => BadRequest(views.html.requestNewUser.render(formWithErrors,request)),
         correctUserData => {
           correctUserData.save()
           Redirect(routes.UserController.viewUserList).flashing(("result_message","User was successfully created!"))
@@ -29,12 +29,12 @@ object UserController extends Controller{
 
   def requestNewUser = Action { implicit request =>
 
-      Ok(views.html.requestNewUser.render(UserData.userCreateForm))
+      Ok(views.html.requestNewUser.render(UserData.userCreateForm,request))
   }
 
   def processEditUser = Action { implicit request =>
       UserData.userEditForm.bindFromRequest().fold(
-        formWithErrors => BadRequest(views.html.requestEditUser.render(formWithErrors)),
+        formWithErrors => BadRequest(views.html.requestEditUser.render(formWithErrors,request)),
         correctUserData => {
           correctUserData.update()
           Redirect(routes.UserController.viewUserList).flashing(("result_message","User was successfully updated!"))
@@ -43,7 +43,7 @@ object UserController extends Controller{
   }
 
   def requestEditUser(id : Int) = Action { implicit request =>
-      Ok(views.html.requestEditUser.render(UserData.userEditForm fill( UserRepository.findById(id).get ) ))
+      Ok(views.html.requestEditUser.render(UserData.userEditForm fill( UserRepository.findById(id).get ),request ))
   }
 
   def removeUser(id: Int) = Action {
@@ -52,12 +52,12 @@ object UserController extends Controller{
   }
 
   def viewUserList = Action { implicit request =>
-      Ok(views.html.viewUserList.render( UserRepository.all().toArray.asInstanceOf[Array[User]]))
+      Ok(views.html.viewUserList.render( UserRepository.all().toArray.asInstanceOf[Array[User]],request))
   }
 
   def todo = Action { implicit request =>
 
-    Ok(views.html.todo.render)
+    Ok(views.html.todo.render(request))
 
   }
 

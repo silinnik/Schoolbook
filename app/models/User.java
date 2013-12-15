@@ -1,4 +1,5 @@
 package models;
+import com.avaje.ebean.Ebean;
 import play.db.ebean.Model;
 import java.io.Serializable;
 
@@ -82,5 +83,39 @@ public class User extends Model {
 	public String getType(){
 		return this.user_type;
 	}
-   
+
+    public Teacher asTeacher(){
+        return Ebean.find(Teacher.class).where().eq("user_id",getUser_id()).findUnique();
+    }
+
+    public Student asStudent(){
+        return Ebean.find(Student.class).where().eq("user_id",getUser_id()).findUnique();
+    }
+
+    public Headmaster asHeadmaster(){
+        return Ebean.find(Headmaster.class).where().eq("user_id",getUser_id()).findUnique();
+    }
+
+    public Headmaster switchToHeadmaster(){
+        Headmaster newHeadmaster = new Headmaster(this.getLogin(),this.getName(),this.getSurname(),this.getPassword());
+        this.delete();
+        newHeadmaster.save();
+        return newHeadmaster;
+    }
+
+    public Teacher switchToTeacher(){
+        Teacher newTeacher = new Teacher(this.getLogin(),this.getName(),this.getSurname(),this.getPassword());
+        this.delete();
+        newTeacher.save();
+        return newTeacher;
+    }
+
+    public Student switchToStudent(){
+        Student newStudent = new Student(this.getLogin(),this.getName(),this.getSurname(),this.getPassword());
+        this.delete();
+        newStudent.save();
+        return newStudent;
+
+    }
+
 }

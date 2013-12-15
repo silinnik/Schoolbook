@@ -9,7 +9,7 @@ import play.api.mvc._
 object LoginController extends Controller{
 
   def requestLogin = Action { implicit request =>
-    Ok(views.html.requestLogin.render(LoginData.loginForm))
+    Ok(views.html.requestLogin.render(LoginData.loginForm,request))
   }
 
   def logout = Action { implicit request =>
@@ -18,7 +18,7 @@ object LoginController extends Controller{
 
   def processLogin = Action { implicit request =>
     LoginData.loginForm.bindFromRequest().fold(
-      formWithErrors => BadRequest(views.html.requestLogin(formWithErrors)),
+      formWithErrors => BadRequest(views.html.requestLogin.render(formWithErrors,request)),
       loginAndPassword => Redirect(routes.UserController.viewUserList).withSession("connected"->loginAndPassword._1)
     )
   }

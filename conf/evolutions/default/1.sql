@@ -10,19 +10,19 @@ create table event (
   constraint pk_event primary key (event_id))
 ;
 
-create table graduate (
+create table grade (
   graduation_id             bigint auto_increment not null,
   student_user_id           integer,
   timetable_entry_timetable_entry_id bigint,
   grade_value               integer not null,
   grade_annotation          varchar(255),
-  constraint pk_graduate primary key (graduation_id))
+  constraint pk_grade primary key (graduation_id))
 ;
 
-create table group (
+create table GROUPP (
   group_id                  integer auto_increment not null,
   name                      varchar(255) not null,
-  constraint pk_group primary key (group_id))
+  constraint pk_GROUPP primary key (group_id))
 ;
 
 create table homework (
@@ -60,11 +60,11 @@ create table user (
   constraint pk_user primary key (user_id))
 ;
 
-alter table graduate add constraint fk_graduate_student_1 foreign key (student_user_id) references user (user_id) on delete restrict on update restrict;
-create index ix_graduate_student_1 on graduate (student_user_id);
-alter table graduate add constraint fk_graduate_timetable_entry_2 foreign key (timetable_entry_timetable_entry_id) references timetable_entry (timetable_entry_id) on delete restrict on update restrict;
-create index ix_graduate_timetable_entry_2 on graduate (timetable_entry_timetable_entry_id);
-alter table timetable_entry add constraint fk_timetable_entry_group_3 foreign key (group_group_id) references group (group_id) on delete restrict on update restrict;
+alter table grade add constraint fk_grade_student_1 foreign key (student_user_id) references user (user_id) on delete restrict on update restrict;
+create index ix_grade_student_1 on grade (student_user_id);
+alter table grade add constraint fk_grade_timetable_entry_2 foreign key (timetable_entry_timetable_entry_id) references timetable_entry (timetable_entry_id) on delete restrict on update restrict;
+create index ix_grade_timetable_entry_2 on grade (timetable_entry_timetable_entry_id);
+alter table timetable_entry add constraint fk_timetable_entry_group_3 foreign key (group_group_id) references GROUPP (group_id) on delete restrict on update restrict;
 create index ix_timetable_entry_group_3 on timetable_entry (group_group_id);
 alter table timetable_entry add constraint fk_timetable_entry_teacher_4 foreign key (teacher_user_id) references user (user_id) on delete restrict on update restrict;
 create index ix_timetable_entry_teacher_4 on timetable_entry (teacher_user_id);
@@ -81,9 +81,9 @@ SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists event;
 
-drop table if exists graduate;
+drop table if exists grade;
 
-drop table if exists group;
+drop table if exists GROUPP;
 
 drop table if exists homework;
 

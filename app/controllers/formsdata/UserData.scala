@@ -1,6 +1,6 @@
 package controllers.formsdata
 
-import models.User
+import models._
 import play.api.data.Form
 import play.api.data.Forms._
 import models.repositories.UserRepository
@@ -61,10 +61,16 @@ object UserData {
 
     )
     {
-      (login,name,surname,passwords,role) => new User(login,name,surname,passwords._1,role.charAt(0))
+      (login,name,surname,passwords,role) => { role match {
+        case "S" => new Student(login,name,surname,passwords._1)
+        case "T" => new Teacher(login,name,surname,passwords._1)
+        case "H" => new Headmaster(login,name,surname,passwords._1)
+        case _ => new User(login,name,surname,passwords._1)
+        }
+      }
     }
     {
-      user => Some(user.getLogin,user.getName,user.getSurname,("",""),user.getUser_type.toString)
+      user => Some(user.getLogin,user.getName,user.getSurname,("",""),user.getType)
     }
   )
 
@@ -121,18 +127,23 @@ object UserData {
     )
     {
       (id,login,name,surname,passwords,role) => {
-        val user = UserRepository.findById(id).get
+        var user = UserRepository.findById(id).get
         user.setUser_id(id)
         user.setLogin(login)
         user.setName(name)
         user.setSurname(surname)
         user.setPassword(passwords._1.getOrElse(user.getPassword))
-        user.setUser_type(role.charAt(0))
+        if (role!=user.getType) user = role match {
+            case "S" => user.switchToStudent()
+            case "H" => user.switchToHeadmaster()
+            case "T" => user.switchToTeacher()
+            case _ => user
+          }
         user
       }
     }
     {
-      user => Some(user.getUser_id,user.getLogin,user.getName,user.getSurname,(None,None),user.getUser_type.toString)
+      user => Some(user.getUser_id,user.getLogin,user.getName,user.getSurname,(None,None),user.getType)
     }
   )
 
