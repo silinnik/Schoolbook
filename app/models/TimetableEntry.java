@@ -18,9 +18,17 @@ public class TimetableEntry extends Model {
 
     private static final long serialVersionUID = 1L;
 
+    public int getTimetable_entry_id() {
+        return timetable_entry_id;
+    }
+
+    public void setTimetable_entry_id(int timetable_entry_id) {
+        this.timetable_entry_id = timetable_entry_id;
+    }
+
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
-    private long timetable_entry_id;
+    private int timetable_entry_id;
 
     /**
      * Homework for this lesson

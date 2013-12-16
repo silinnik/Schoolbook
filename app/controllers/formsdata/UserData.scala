@@ -71,8 +71,8 @@ object UserData {
             case Some(pass) =>  Authenticator.cryptPassword(pass)
             case _ => user.getPassword
           })
-          role match {
-            case user.getUserType => ()
+          user.getUserType match {
+            case role => ()
             case _ => user = user.switchTo(UserRoles.valueOf(role))
           }
         user.commit

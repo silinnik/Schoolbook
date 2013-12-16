@@ -9,9 +9,6 @@ import scala.collection.JavaConversions._
 object GroupController extends Controller{
 
   def viewGroup(groupId: Int) = Action { request =>
-     if(Ebean.find(classOf[Group]).where.eq("group_id", groupId.toString).findUnique.getStudents == null)
-       print("OMGOMGOMGJEZUZ ITS NULL NOOOOOO")
-
     val userList = Ebean.find(classOf[Group]).where.eq("group_id", groupId.toString).findUnique.getStudents.map(_.asInstanceOf[User]).toArray.sortBy(_.getSurname)
 
     Ok(views.html.viewUserList.render(userList,request))

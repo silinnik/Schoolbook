@@ -94,6 +94,11 @@ public class UserRepository {
         return packToOption(Ebean.find(User.class).where().idEq(userId).findUnique().asRoleUser());
     }
 
+
+    public static Option<Teacher> findTeacherById(Integer teacherId){
+        return packAnyToOption(Ebean.find(Teacher.class).where().idEq(teacherId).findUnique());
+    }
+
     /**
      * Gets user by his login
      * @param userLogin User name to look for
@@ -118,5 +123,7 @@ public class UserRepository {
         return user == null ? ScalaLang.none() : new Some(user);
     }
 
+    private static <T> Option<T> packAnyToOption(T object){
+        return object == null ? ScalaLang.none() : new Some(object);    }
 
 }
