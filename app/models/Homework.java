@@ -22,7 +22,19 @@ public class Homework extends Model {
 	@Column(nullable = false)
     private String homework_text;
 
-	public long getHomework_id() {
+    public Homework(TimetableEntry timetable_entry, String homework_text) {
+        super();
+        this.timetable_entry = timetable_entry;
+        this.homework_text = homework_text;
+    }
+
+    public Homework(){}
+
+    public void setHomework_text(String homework_text) {
+        this.homework_text = homework_text;
+    }
+
+    public long getHomework_id() {
 		return homework_id;
 	}
 
@@ -42,17 +54,10 @@ public class Homework extends Model {
 		return homework_text;
 	}
 
-	public Homework(){}
-	
-	public void setHomework_text(String homework_text) {
-		this.homework_text = homework_text;
-	}
 
-	public Homework(TimetableEntry timetable_entry, String homework_text) {
-		super();
-		this.timetable_entry = timetable_entry;
-		this.homework_text = homework_text;
-	}
+	
+
+
 	
 	
 	

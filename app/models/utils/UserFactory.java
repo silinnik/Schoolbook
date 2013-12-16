@@ -1,4 +1,4 @@
-package models.factories;
+package models.utils;
 
 import models.Headmaster;
 import models.Student;

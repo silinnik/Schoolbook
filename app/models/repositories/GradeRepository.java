@@ -12,5 +12,4 @@ public class GradeRepository {
     public static Model.Finder<Integer, Grade> find = new Model.Finder<>(Integer.class, Grade.class);
 
 
-
 }

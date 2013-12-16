@@ -10,7 +10,6 @@ object UserData {
 
   val userCreateForm = Form(
     mapping(
-
       "login" -> nonEmptyText(1, 32) .verifying(
         "User with this login already exists!", user => !UserRepository.isLoginRegistered(user)
       ),
@@ -45,7 +44,7 @@ object UserData {
   val userEditForm = Form(
     mapping(
       "id"  -> number . verifying (
-        "User does not exist!", UserRepository.findById(_) != null
+        "User does not exist!", !UserRepository.findById(_).isEmpty
         ),
       "login" -> nonEmptyText(1, 32),
       "name" -> nonEmptyText(1, 32),
@@ -54,7 +53,7 @@ object UserData {
         "main" -> optional(nonEmptyText(8,32)),
         "confirm" -> optional(nonEmptyText(8, 32))
       ). verifying (
-        "New password does not match it's confirmation", _ match{
+        "New password does not match it's confirmation", _ match {
           case (pass,confirm) if !pass.isEmpty || !confirm.isEmpty => pass == confirm
           case _ => true
         }
@@ -63,21 +62,20 @@ object UserData {
     )
     {
       (id,login,name,surname,passwords,role) => {
-        var user = UserRepository.findById(id,role).get
-        user.setUser_id(id)
-        user.setLogin(login)
-        user.setName(name)
-        user.setSurname(surname)
-        user.setPassword(passwords._1 match {
-          case Some(pass) =>  Authenticator.cryptPassword(pass)
-          case _ => user.getPassword
-        })
-        /*if (role!=user.getUserType) user = role match {
-            case "S" => user.switchToStudent()
-            case "H" => user.switchToHeadmaster()
-            case "T" => user.switchToTeacher()
-            case _ => user
-          }*/
+        var user = UserRepository.findById(id).get
+          user.setUser_id(id)
+          user.setLogin(login)
+          user.setName(name)
+          user.setSurname(surname)
+          user.setPassword(passwords._1 match {
+            case Some(pass) =>  Authenticator.cryptPassword(pass)
+            case _ => user.getPassword
+          })
+          role match {
+            case user.getUserType => ()
+            case _ => user = user.switchTo(UserRoles.valueOf(role))
+          }
+        user.commit
         user
       }
     }

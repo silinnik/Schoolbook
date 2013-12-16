@@ -96,25 +96,38 @@ public class User extends Model {
         return Ebean.find(Headmaster.class).where().eq("user_id",getUser_id()).findUnique();
     }
 
-    public Headmaster switchToHeadmaster(){
-        Headmaster newHeadmaster = new Headmaster(this.getLogin(),this.getName(),this.getSurname(),this.getPassword());
-        this.delete();
-        newHeadmaster.save();
-        return newHeadmaster;
+    public User as(UserRoles role){
+        switch(role){
+            case H:
+                return this.asHeadmaster();
+            case T:
+                return this.asTeacher();
+            case S:
+                return this.asStudent();
+            case U:
+            default:
+                return this;
+        }
     }
 
-    public Teacher switchToTeacher(){
-        Teacher newTeacher = new Teacher(this.getLogin(),this.getName(),this.getSurname(),this.getPassword());
+    public User switchTo(UserRoles role){
+        User user = this;
+        switch(role){
+            case H:
+                user = new Headmaster(this.getLogin(),this.getName(),this.getSurname(),this.getPassword());
+                break;
+            case T:
+                user = new Teacher(this.getLogin(),this.getName(),this.getSurname(),this.getPassword());
+                break;
+            case S:
+                user = new Student(this.getLogin(),this.getName(),this.getSurname(),this.getPassword());
+            default:
+                break;
+        }
+        //TODO add id persistance (from old user to new)
         this.delete();
-        newTeacher.save();
-        return newTeacher;
-    }
-
-    public Student switchToStudent(){
-        Student newStudent = new Student(this.getLogin(),this.getName(),this.getSurname(),this.getPassword());
-        this.delete();
-        newStudent.save();
-        return newStudent;
+        user.save();
+        return user;
 
     }
 
@@ -139,19 +152,5 @@ public class User extends Model {
 	public User(){
 	
 	}
-
-    public static Class getClassByRole(String role){
-        switch (role){
-            case "S":
-                return Student.class;
-            case "H":
-                return Headmaster.class;
-            case "T":
-                return Teacher.class;
-            case "U":
-            default:
-                return User.class;
-        }
-    }
 
 }

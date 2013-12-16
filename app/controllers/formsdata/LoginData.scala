@@ -18,7 +18,6 @@ object LoginData {
       "login" -> nonEmptyText(1, 32),
       "password" -> nonEmptyText(8, 16)
     ).verifying("Invalid login or Password!", t => Authenticator.authenticateLoginData(t) )
-
   )
 
 

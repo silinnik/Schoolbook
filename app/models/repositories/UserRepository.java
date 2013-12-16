@@ -8,6 +8,7 @@ import scala.Some;
 import scalalang.ScalaLang;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -31,6 +32,15 @@ public class UserRepository {
      */
     public static Set<Student> allStudents() {
         return new HashSet<>(Ebean.find(Student.class).findSet());
+    }
+
+    /**
+     * Gets a set of all the students with given ids
+     * @param ids list of ids to look for
+     * @return Set of all the students which have index mantioned in the list.
+     */
+    public static Set<Student> byStudentIds(List<Integer> ids) {
+        return Ebean.find(Student.class).where().idIn(ids).findSet();
     }
 
     /**

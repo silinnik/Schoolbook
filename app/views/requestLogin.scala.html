@@ -5,16 +5,15 @@
 @base("Log In"){
 
         @if(userForm.hasGlobalErrors) {
-
-        <ul>
-            @userForm.globalErrors.foreach { error =>
-            <li>error.message</li>
-            }
-        </ul>
+            <ul>
+                @userForm.globalErrors.foreach { error =>
+                <li>error.message</li>
+                }
+            </ul>
         }
 
         @form(action = controllers.routes.LoginController.processLogin,'class->"Form LoginForm") {
-        <fieldset>
+            <fieldset>
                 @inputText(
                     userForm("email"),
                     '_label -> "Email",
@@ -25,8 +24,8 @@
                     '_label -> "Password",
                     '_showConstraints -> false
                 )
-        </fieldset>
-        <input type="submit" value="Create" id="btn-submit">
+            </fieldset>
+            <input type="submit" value="Create" id="btn-submit">
         }
 
 }

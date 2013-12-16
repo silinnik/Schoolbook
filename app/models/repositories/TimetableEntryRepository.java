@@ -8,6 +8,8 @@ import scala.Some;
 import scalalang.ScalaLang;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Date: 12/16/13
@@ -20,8 +22,12 @@ public class TimetableEntryRepository {
        return packInOption(find.byId(timetableEntryId));
     }
 
+    public static Set<TimetableEntry> all(){
+       return new HashSet<>(find.all());
+    }
+
     public static Option<TimetableEntry> byDate(Date date){
-       return packInOption(find.where().eq("date",date.toString()).findUnique());
+       return packInOption(find.where().eq("date", date.toString()).findUnique());
     }
 
     public static Option<TimetableEntry> byGrade(Grade grade){
