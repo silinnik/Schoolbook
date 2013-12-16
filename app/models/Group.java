@@ -35,8 +35,7 @@ public class Group extends Model {
 	@Column(nullable = false)
 	private String name;
 	
-	@JoinTable(name="student_group")
-	@ManyToMany
+	@OneToMany(mappedBy = "group")
 	private Set<Student> students;
 	
 	public int getGroup_id() {

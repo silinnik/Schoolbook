@@ -58,5 +58,21 @@ public class Student extends User {
     public Option<Group> getGroup(){
        return GroupRepository.byStudent(this);
     }
+
+	@ManyToOne
+	private Group group;
+
+	public Group getGroup(){
+	return this.group;
+	}
+
+	public void setGroup(Group group){
+	this.group = group;
+	}
 	
 }
+
+
+	
+
+
