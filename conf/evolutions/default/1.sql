@@ -39,7 +39,8 @@ create table subject (
 
 create table timetable_entry (
   timetable_entry_id        bigint auto_increment not null,
-  time                      timestamp not null,
+  time                      date not null,
+  number                    integer not null,
   group_group_id            integer,
   teacher_user_id           integer,
   subject_subject_id        integer,
@@ -60,6 +61,12 @@ create table user (
   constraint pk_user primary key (user_id))
 ;
 
+
+create table student_group (
+  GROUPP_group_id                integer not null,
+  user_user_id                   integer not null,
+  constraint pk_student_group primary key (GROUPP_group_id, user_user_id))
+;
 alter table grade add constraint fk_grade_student_1 foreign key (student_user_id) references user (user_id) on delete restrict on update restrict;
 create index ix_grade_student_1 on grade (student_user_id);
 alter table grade add constraint fk_grade_timetable_entry_2 foreign key (timetable_entry_timetable_entry_id) references timetable_entry (timetable_entry_id) on delete restrict on update restrict;
@@ -75,6 +82,10 @@ create index ix_timetable_entry_homework_6 on timetable_entry (timetable_entry);
 
 
 
+alter table student_group add constraint fk_student_group_GROUPP_01 foreign key (GROUPP_group_id) references GROUPP (group_id) on delete restrict on update restrict;
+
+alter table student_group add constraint fk_student_group_user_02 foreign key (user_user_id) references user (user_id) on delete restrict on update restrict;
+
 # --- !Downs
 
 SET REFERENTIAL_INTEGRITY FALSE;
@@ -84,6 +95,8 @@ drop table if exists event;
 drop table if exists grade;
 
 drop table if exists GROUPP;
+
+drop table if exists student_group;
 
 drop table if exists homework;
 

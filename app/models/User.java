@@ -79,9 +79,9 @@ public class User extends Model {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public String getType(){
-		return this.user_type;
+
+	public String getUserType(){
+		return "U";
 	}
 
     public Teacher asTeacher(){
@@ -117,9 +117,41 @@ public class User extends Model {
         return newStudent;
 
     }
-	
+
+    public User asRoleUser(){
+        switch(this.getUserType()){
+            case "S" :
+                return this.asStudent();
+            case "H" :
+                return this.asHeadmaster();
+            case "T" :
+                return this.asTeacher();
+            case "U" :
+            default :
+                return this;
+        }
+    }
+
+    public void commit(){
+        this.save();
+    }
+
 	public User(){
 	
 	}
+
+    public static Class getClassByRole(String role){
+        switch (role){
+            case "S":
+                return Student.class;
+            case "H":
+                return Headmaster.class;
+            case "T":
+                return Teacher.class;
+            case "U":
+            default:
+                return User.class;
+        }
+    }
 
 }

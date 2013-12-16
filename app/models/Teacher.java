@@ -28,6 +28,12 @@ public Teacher(String login, String name, String surname, String password){
 	super(login, name, surname, password);
 }
 
-public Teacher(){}
+    @Override
+    public String getUserType(){
+        return "T";
+    }
+
+
+    public Teacher(){}
 
 }

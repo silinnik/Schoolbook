@@ -14,6 +14,8 @@ GET     /DeleteUser/:userId          controllers.UserController.removeUser(userI
 
 GET     /UserList                   controllers.UserController.viewUserList()
 
+GET     /Group/*id                  controllers.GroupController.viewGroup(id:Int)
+
 # Login services
 GET     /Login                      controllers.LoginController.requestLogin()
 GET     /Logout                     controllers.LoginController.logout()

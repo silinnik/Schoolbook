@@ -12,4 +12,8 @@ object Authenticator {
           case Some(user) => BCrypt.checkpw(nameAndPassword._2,user.getPassword)
           case _=> false
         }
+
+  def cryptPassword(pass : String) = {
+    BCrypt.hashpw(pass,BCrypt.gensalt())
+  }
 }

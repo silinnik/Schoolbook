@@ -29,8 +29,14 @@ public class Headmaster extends User {
 	public Headmaster(){
 	
 	}
-	
-	public Headmaster (String login, String name, String surname, String password){
+
+    @Override
+    public String getUserType(){
+        return "H";
+    }
+
+
+    public Headmaster (String login, String name, String surname, String password){
 		super(login, name, surname, password);
 	}
 

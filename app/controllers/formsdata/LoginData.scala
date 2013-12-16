@@ -15,9 +15,9 @@ object LoginData {
 
   val loginForm = Form(
     tuple (
-      "login" -> email,
+      "login" -> nonEmptyText(1, 32),
       "password" -> nonEmptyText(8, 16)
-    ).verifying( t => Authenticator.authenticateLoginData(t) )
+    ).verifying("Invalid login or Password!", t => Authenticator.authenticateLoginData(t) )
 
   )
 

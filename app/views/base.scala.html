@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-    <title>title</title>
+    <title>@title</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -33,10 +33,36 @@
 
 <div class="container theme-showcase">
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        @content
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Parsonal items</div>
+                    <div class="list-group">
+                        <a href="admin.html" class="list-group-item ">
+                            <span class="glyphicon glyphicon-wrench"> </span>
+                            Profile
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="glyphicon glyphicon-envelope"> </span>
+                            Messages <span class="badge">14</span> </a>
+                        <a href="#" class="list-group-item">
+                            <span class="glyphicon glyphicon-bullhorn"> </span>
+                            My events</a>
+                    </div><!--/.list-group -->
+                </div> <!--/.panel -->
+            </div><!--/span-->
+            <div class="col-md-9">
+                <div class="jumbotron">
+                    <div class="container">
+                        @content
+                    </div><!--container-->
+                </div><!--/jumbotrom-->
+            </div><!--/span-->
+        </div><!--/row-->
     </div>
+
 
     <hr>
     <footer> <h4> <small>

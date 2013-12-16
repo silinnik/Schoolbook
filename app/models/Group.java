@@ -1,8 +1,11 @@
 package models;
+import com.avaje.ebean.Ebean;
 import play.db.ebean.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -17,16 +20,24 @@ public class Group extends Model {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private int group_id;
-	
-	@OneToMany(mappedBy = "group")
-	private ArrayList<TimetableEntry> timetable_entries;
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
+
+    @OneToMany(mappedBy = "group",cascade=CascadeType.PERSIST)
+	private Set<TimetableEntry> timetable_entries;
 	
 	@Column(nullable = false)
 	private String name;
 	
 	@JoinTable(name="student_group")
 	@ManyToMany
-	private ArrayList<Student> students;
+	private Set<Student> students;
 	
 	public int getGroup_id() {
 		return group_id;
@@ -36,13 +47,30 @@ public class Group extends Model {
 		this.group_id = group_id;
 	}
 
-	public ArrayList<TimetableEntry> getTimetable_entries() {
+	public Set<TimetableEntry> getTimetable_entries() {
 		return timetable_entries;
 	}
 
-	public void setTimetable_entries(ArrayList<TimetableEntry> timetable_entries) {
+	public void setTimetable_entries(Set<TimetableEntry> timetable_entries) {
 		this.timetable_entries = timetable_entries;
 	}
+
+    public void addStudent(Student student){
+        students.add(student);
+    }
+
+    public void removeStudent(Student student){
+        if(hasStudent(student))
+            students.remove(student);
+    }
+
+    public boolean hasStudent(Student student){
+        for(Student studentInGroup : this.getStudents()){
+            if(studentInGroup.getStudent_id() == student.getStudent_id())
+                return true;
+        }
+        return false;
+    }
 
 	public String getName() {
 		return name;
@@ -52,21 +80,12 @@ public class Group extends Model {
 		this.name = name;
 	}
 
-	public Group(ArrayList<TimetableEntry> timetable_entries, String name,
-			ArrayList<Student> students) {
-		super();
-		if(timetable_entries!=null){
-		this.timetable_entries = timetable_entries;
-		}
-		else this.timetable_entries = new ArrayList<TimetableEntry>();
+	public Group(Set<TimetableEntry> timetable_entries, String name, Set<Student> students) {
+        this.timetable_entries = timetable_entries == null ? new HashSet<TimetableEntry>() : timetable_entries;
+        this.students = students == null  ?  new HashSet<Student>() : students;
 		this.name = name;
-		if(students!=null){
-		this.students = students;
-	}
-	else this.students = new ArrayList<Student>();
 	}
 	
-	public Group(){
-	}
+	public Group(){}
    
 }

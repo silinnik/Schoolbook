@@ -52,7 +52,7 @@ object UserController extends Controller{
   }
 
   def viewUserList = Action { implicit request =>
-      Ok(views.html.viewUserList.render( UserRepository.all().toArray.asInstanceOf[Array[User]],request))
+      Ok(views.html.viewUserList.render(UserRepository.all().filter(_ => true).toArray,request))
   }
 
   def todo = Action { implicit request =>

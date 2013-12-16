@@ -1,44 +1,5 @@
-@(userArray : Array[User])(implicit request: play.api.mvc.Request[Any])
+@(userArray : Array[User], addCheckboxes : Boolean = false)(implicit request: play.api.mvc.Request[Any])
 @import models._
-@base("User List"){
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Parsonal items</div>
-                <div class="list-group">
-                    <a href="admin.html" class="list-group-item ">
-                        <span class="glyphicon glyphicon-wrench"> </span>
-                        Profile
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-envelope"> </span>
-                        Messages <span class="badge">14</span> </a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-bullhorn"> </span>
-                        My events</a>
-                </div><!--/.list-group -->
-            </div> <!--/.panel -->
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Possibility</div>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">User admanistration</a>
-                    <a href="groupAdmin.html" class="list-group-item">Group management</a>
-                    <a href="timetable.html" class="list-group-item">Timetable management</a>
-                    <a href="#" class="list-group-item">Event management</a>
-                    <a href="#" class="list-group-item">Subjects management</a>
-                </div><!--/.list-group -->
-            </div> <!--/.panel -->
-
-        </div><!--/span-->
-        <div class="col-md-9">
-            <div class="jumbotron">
-                <div class="container">
-                    <h2>List of users</h2>
 
                     <div class="row">
                         <div class="col-xs-3">
@@ -59,9 +20,10 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
+                            @if(addCheckboxes){ <th>&nbsp;</th> }
                             <th> № </th>
-                            <th> First Name </th>
                             <th> Last Name </th>
+                            <th> First Name </th>
                             <th> Username </th>
                             <th> Role </th>
                         </tr>
@@ -70,18 +32,14 @@
 
                         @for(user <- userArray){
                         <tr>
-                            <th> user.name </th>
-                            <th> user.surname </th>
-                            <th> user.login </th>
-                            <th> user.role  </th>
+                            @if(addCheckboxes){ <th class="userselection"><input id = "user@user.getUser_id" type="checkbox" name="terms" /></th> }
+                            <th> @user.getUser_id </th>
+                            <th> @user.getSurname </th>
+                            <th> @user.getName </th>
+                            <th> @user.getLogin </th>
+                            <th> @user.getUserType  </th>
                         </tr>
                         }
                         </tbody>
                     </table>
                     </p>
-                </div><!--container-->
-            </div><!--/jumbotrom-->
-        </div><!--/span-->
-    </div><!--/row-->
-</div>
-}

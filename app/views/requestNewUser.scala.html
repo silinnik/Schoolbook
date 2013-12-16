@@ -12,36 +12,41 @@
     </ul>
     }
 
-    @session.get("TEST")
 
     @form(action = controllers.routes.UserController.processNewUser,'class->"Form1") {
 
                 @inputText(
-                    userForm("email"),
+                    userForm("login"),
                     'size -> 16  ,
-                    '_label -> "Email"
+                    '_label -> "Login",
+                    '_showConstraints -> false
                 )
                 @inputText(
                     userForm("name")
-                    ,'_label -> "Name"
+                    ,'_label -> "Name",
+                    '_showConstraints -> false
                 )
                 @inputText(
                     userForm("surname")
-                    ,'_label -> "Surname"
+                    ,'_label -> "Surname",
+                    '_showConstraints -> false
                 )
                 @inputPassword(
                     userForm("password.main")
-                    ,'_label -> "Password"
+                    ,'_label -> "Password",
+                    '_showConstraints -> false
                 )
                 @inputPassword(
                     userForm("password.confirm")
-                    ,'_label -> "Confirm password"
+                    ,'_label -> "Confirm password",
+                    '_showConstraints -> false
                 )
 
                 @inputRadioGroup(
                     userForm("role"),
                     options = RoleOptions,
-                    '_label -> "Role"
+                    '_label -> "Role",
+                    '_showConstraints -> false
                 )
 
 
