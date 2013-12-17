@@ -1,0 +1,25 @@
+@(groupForm : play.api.data.Form[Group])
+@import helper._
+@import models._
+@import controllers.formsdata.UserData._
+
+@if(groupForm.hasGlobalErrors) {
+    <ul>
+        @groupForm.globalErrors.foreach { error =>
+        <li>error.message</li>
+        }
+    </ul>
+}
+
+@form(action = controllers.routes.GroupController.processNewGroup,'class->"Form1") {
+
+    @inputText(
+    groupForm("name"),
+    'size -> 16  ,
+    '_label -> "Group Name:",
+    '_showConstraints -> false
+    )
+
+    <input type="submit" value="Create" id="btn-submit">
+
+}

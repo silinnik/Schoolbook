@@ -79,18 +79,18 @@ object TestDataProvider {
 
 
 
-    val TimeentryMath1 = new TimetableEntry(Date(2013,9,2),1,groupA,teacher4,subjectMath,null,null)
-    val TimeentryMath2 = new TimetableEntry(Date(2013,9,3),1,groupB,teacher4,subjectMath,null,null)
-    val TimeentryMath3 = new TimetableEntry(Date(2013,9,2),3,groupC,teacher4,subjectMath,null,null)
-    val TimeentryPhys1 = new TimetableEntry(Date(2013,9,2),4,groupA,teacher1,subjectPhysics,null,null)
-    val TimeentryPhys2 = new TimetableEntry(Date(2013,9,2),6,groupB,teacher1,subjectPhysics,null,null)
-    val TimeentryPhys3 = new TimetableEntry(Date(2013,9,3),4,groupC,teacher1,subjectPhysics,null,null)
-    val TimeentryChem1 = new TimetableEntry(Date(2013,9,4),1,groupA,teacher3,subjectChemistry,null,null)
-    val TimeentryChem2 = new TimetableEntry(Date(2013,9,5),2,groupB,teacher3,subjectChemistry,null,null)
-    val TimeentryChem3 = new TimetableEntry(Date(2013,9,6),2,groupC,teacher3,subjectChemistry,null,null)
-    val TimeentryEngl1 = new TimetableEntry(Date(2013,9,3),2,groupA,teacher2,subjectEnglish,null,null)
-    val TimeentryEngl2 = new TimetableEntry(Date(2013,9,4),3,groupB,teacher2,subjectEnglish,null,null)
-    val TimeentryEngl3 = new TimetableEntry(Date(2013,9,6),5,groupC,teacher2,subjectEnglish,null,null)
+    val TimeentryMath1 = new TimetableEntry(0,1,groupA,teacher4,subjectMath)
+    val TimeentryMath2 = new TimetableEntry(1,1,groupB,teacher4,subjectMath)
+    val TimeentryMath3 = new TimetableEntry(0,3,groupC,teacher4,subjectMath)
+    val TimeentryPhys1 = new TimetableEntry(2,4,groupA,teacher1,subjectPhysics)
+    val TimeentryPhys2 = new TimetableEntry(4,6,groupB,teacher1,subjectPhysics)
+    val TimeentryPhys3 = new TimetableEntry(1,4,groupC,teacher1,subjectPhysics)
+    val TimeentryChem1 = new TimetableEntry(2,1,groupA,teacher3,subjectChemistry)
+    val TimeentryChem2 = new TimetableEntry(3,2,groupB,teacher3,subjectChemistry)
+    val TimeentryChem3 = new TimetableEntry(1,2,groupC,teacher3,subjectChemistry)
+    val TimeentryEngl1 = new TimetableEntry(0,2,groupA,teacher2,subjectEnglish)
+    val TimeentryEngl2 = new TimetableEntry(2,3,groupB,teacher2,subjectEnglish)
+    val TimeentryEngl3 = new TimetableEntry(4,5,groupC,teacher2,subjectEnglish)
 
 
 
@@ -139,11 +139,11 @@ object TestDataProvider {
     groupC.getTimetable_entries.add(TimeentryMath3)
     groupC.getTimetable_entries.add(TimeentryEngl3)
 
-    val Grade1 = new Grade(student5,TimeentryMath1,1,"Extra task")
-    val Grade2 = new Grade(student11,TimeentryPhys3,2,"Extra task")
-    val Grade3 = new Grade(student15,TimeentryChem2,3,"Extra task")
-    val Grade4 = new Grade(student3,TimeentryPhys1,4,"Extra task")
-    val Grade5 = new Grade(student10,TimeentryEngl3,5,"Extra task")
+    val Grade1 = new Grade(student5,TimeentryMath1,1,1,"Extra task")
+    val Grade2 = new Grade(student11,TimeentryPhys3,2,2,"Extra task")
+    val Grade3 = new Grade(student15,TimeentryChem2,3,1,"Extra task")
+    val Grade4 = new Grade(student3,TimeentryPhys1,4,4,"Extra task")
+    val Grade5 = new Grade(student10,TimeentryEngl3,5,1,"Extra task")
 
 
     Grade1.save()
@@ -161,23 +161,6 @@ object TestDataProvider {
     Homework2.save()
     Homework3.save()
     Homework4.save()
-
-
-
-    TimeentryMath1.setHomework(Homework1)
-    TimeentryMath2.setHomework(Homework1)
-    TimeentryMath3.setHomework(Homework1)
-    TimeentryChem1.setHomework(Homework2)
-    TimeentryChem2.setHomework(Homework2)
-    TimeentryChem3.setHomework(Homework2)
-    TimeentryPhys1.setHomework(Homework3)
-    TimeentryPhys2.setHomework(Homework3)
-    TimeentryPhys3.setHomework(Homework3)
-    TimeentryChem2.getGrades.add(Grade3)
-    TimeentryMath1.getGrades.add(Grade1)
-    TimeentryPhys1.getGrades.add(Grade4)
-    TimeentryPhys3.getGrades.add(Grade2)
-    TimeentryEngl3.getGrades.add(Grade5)
 
     student1.update()
     student2.update()

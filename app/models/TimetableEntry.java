@@ -35,23 +35,10 @@ public class TimetableEntry extends Model {
     private int timetable_entry_id;
 
     /**
-     * Homework for this lesson
-     */
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="timetable_entry")
-    private Homework homework;
-
-    /**
-     * Set of grades that students got from this lesson
-     */
-    @OneToMany(mappedBy = "timetable_entry")
-    private Set<Grade> grades;
-
-    /**
      * Date of the lesson
      */
 	@Column(nullable = false)
-	private Date time;
+	private int day;
 
     /**
      * Number of this lesson in the sequence of lessons
@@ -85,58 +72,17 @@ public class TimetableEntry extends Model {
      * @param group Group which attends this lesson
      * @param teacher Teacher that teaches this lesson
      * @param subject Subject that is taught on this lesson
-     * @param homework Homework for this lesson
-     * @param grades Grades assigned to students on this lesson
      */
-    public TimetableEntry(Date time, int number, Group group, Teacher teacher,
-                          Subject subject, Homework homework, Set<Grade> grades) {
+    public TimetableEntry(int time, int number, Group group, Teacher teacher,
+                          Subject subject) {
         super();
-        this.grades = grades == null ?  new HashSet<Grade>() : grades;
         this.number = number;
-        this.time = time;
         this.group = group;
         this.teacher = teacher;
         this.subject = subject;
-        this.homework = homework;
     }
 
     public TimetableEntry(){}
-
-    public boolean isAt(int year, int week)
-    {
-
-      Calendar c1 = GregorianCalendar.getInstance();
-      Calendar c2 = GregorianCalendar.getInstance();
-      Calendar c3 = GregorianCalendar.getInstance();
-
-      c1.setFirstDayOfWeek(Calendar.MONDAY);
-      c1.set(Calendar.YEAR,year);
-      c1.set(Calendar.WEEK_OF_YEAR,week);
-      c1.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
-
-      c3.setFirstDayOfWeek(Calendar.MONDAY);
-      c3.set(Calendar.YEAR, year);
-      c3.set(Calendar.WEEK_OF_YEAR,week);
-      c3.set(Calendar.DAY_OF_WEEK,Calendar.SATURDAY);
-
-
-      c2.setTime(time);
-        System.out.println(new Date(c2.getTimeInMillis()).toString());
-       // System.out.println("Given timestamp: "+ time.toString());
-        System.out.println("Comparing : "+ c1.getTimeInMillis()+" < "+ c2.getTimeInMillis()+" < "+c3.getTimeInMillis());
-
-      return c2.getTimeInMillis() >= c1.getTimeInMillis() && c2.getTimeInMillis() <= c3.getTimeInMillis();
-    }
-
-
-
-    public Set<Grade> getGrades() {
-        return grades;
-    }
-
-    public void setGrades(Set<Grade> grades) {
-        this.grades = grades;
-    }
 
     public int getNumber() {
         return number;
@@ -146,12 +92,12 @@ public class TimetableEntry extends Model {
         this.number = number;
     }
 
-	public Date getTime() {
-		return time;
+	public int getDay() {
+		return day;
 	}
 
-	public void setTime(Date time) {
-		this.time = time;
+	public void setDay(int day) {
+		this.day = day;
 	}
 
 	public Group getGroup() {
@@ -177,18 +123,5 @@ public class TimetableEntry extends Model {
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
-
-	public Homework getHomework() {
-		return homework;
-	}
-
-	public void setHomework(Homework homework) {
-		this.homework = homework;
-	}
-
-    public int getDayOfTheWeek(){
-        cal.setTime(getTime());
-        return cal.get(Calendar.DAY_OF_WEEK);
-    }
 
 }

@@ -1,8 +1,6 @@
 package models;
 import play.db.ebean.Model;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
 
 /**
@@ -19,11 +17,11 @@ public Grade(){
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
-	private long graduation_id;
+	private long grade_id;
 	
 	@ManyToOne
 	private Student student;
-	
+
 	@ManyToOne
 	private TimetableEntry timetable_entry;
 	
@@ -33,12 +31,15 @@ public Grade(){
 	@Column
 	String grade_annotation;
 
+    @Column(nullable = false)
+	int week;
+
 	public long getGrade_id() {
-		return graduation_id;
+		return grade_id;
 	}
 
 	public void setGrade_id(long graduation_id) {
-		this.graduation_id = graduation_id;
+		this.grade_id = graduation_id;
 	}
 
 	public Student getStudent() {
@@ -48,6 +49,14 @@ public Grade(){
 	public void setStudent(Student student) {
 		this.student = student;
 	}
+
+    public int getWeek() {
+        return week;
+    }
+
+    public void setWeek(int week) {
+        this.week = week;
+    }
 
 	public TimetableEntry getTimetable_entry() {
 		return timetable_entry;
@@ -74,12 +83,13 @@ public Grade(){
 	}
 
 	public Grade(Student student, TimetableEntry timetable_entry,
-			int grade_value, String grade_annotation) {
+			int grade_value,int week, String grade_annotation) {
 		super();
 		this.student = student;
 		this.timetable_entry = timetable_entry;
 		this.grade_value = grade_value;
 		this.grade_annotation = grade_annotation;
+        this.week = week;
 	}
 	
 	

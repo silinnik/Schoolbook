@@ -1,0 +1,24 @@
+@(groupset : Set[Group],editable : Boolean)(implicit request : play.api.mvc.Request[Any])
+@import models.Group
+
+<p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        @if(editable){ <th>&nbsp;</th> }
+        <th> № </th>
+        <th> Name </th>
+        <th> Size </th>
+        @if(editable){ <th>&nbsp;</th> }  <!--"Edit" Placeholder-->
+        <th>&nbsp;</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    @for(group <- groupset){
+        @GroupListComponent(group,editable)
+    }
+    </tbody>
+</table>
+</p>

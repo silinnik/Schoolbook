@@ -10,13 +10,5 @@ import java.sql.Date
 */
 object TimetableController extends Controller {
 
-  def showTimetableForGroup(groupId: Int,year :Int, week: Int) = Action { request =>
-    val timetableEntries = TimetableEntryRepository.all().filter(_.isAt(year,week))
-    println(timetableEntries.size)
-    for(tr <- TimetableEntryRepository.all()){
-      //println("Year: "+tr.getTime.getYear + " Day: " + tr.getDayOfTheWeek + " Number: " + tr.getNumber + " Group : " + tr.getGroup )
-    }
-    Ok(views.html.timetableviews.viewgrouptimetable.render(timetableEntries,request))
-  }
-
+  def showTimetableForGroup(groupId: Int) = TODO
 }

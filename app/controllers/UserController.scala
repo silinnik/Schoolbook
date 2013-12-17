@@ -32,6 +32,8 @@ object UserController extends Controller{
       Ok(views.html.requestNewUser.render(UserData.userCreateForm,request))
   }
 
+  def getStudentsBySurnameRegex(surnameRegex : String) = TODO
+
   def processEditUser = Action { implicit request =>
       UserData.userEditForm.bindFromRequest().fold(
         formWithErrors => BadRequest(views.html.requestEditUser.render(formWithErrors,request)),

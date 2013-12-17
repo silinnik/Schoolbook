@@ -1,5 +1,7 @@
+@()
 @import helper._
 
 @javascriptRouter("ajaxtestRouter")(
-routes.javascript.AjaxController.processAjaxMessage
+routes.javascript.AjaxController.processAjaxMessage,
+routes.javascript.UserController.getStudentsBySurnameRegex
 )

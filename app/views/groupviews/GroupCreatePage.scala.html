@@ -1,0 +1,6 @@
+@(form : play.api.data.Form[Group])(implicit request : play.api.mvc.Request[Any])
+@import models._
+
+@base("Create group"){
+        @GroupCreateFormComponent(form)
+}

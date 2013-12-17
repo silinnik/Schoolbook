@@ -1,0 +1,8 @@
+@(grouplist : Set[Group],editable : Boolean = true)(implicit request : play.api.mvc.Request[Any])
+@import models._
+
+
+@base("Groups list"){
+    @GroupListComponent(grouplist,editable)
+        <a href="routes.controllers.GroupController.requestNewGroup">Create group</a>
+}

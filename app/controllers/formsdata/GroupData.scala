@@ -17,11 +17,10 @@ object GroupData {
           mapping(
             "name" -> nonEmptyText(6, 32) .verifying(
               "User with this login already exists!", groupName => GroupRepository.byName(groupName) == null
-            ),
-            "studentIndicies" -> text
+            )
           )
-          {(name,indices) => new Group(null,name,UserRepository.byStudentIds(cutIndicesFromString(indices)))}
-          {group => Some(group.getName,group.getStudents.map(_.getStudent_id).mkString(","))}
+          {(name) => new Group(null,name,null)}
+          {group => Some(group.getName)}
         )
 
         val groupEditForm = Form(
@@ -29,18 +28,16 @@ object GroupData {
             "id" -> number,
             "name" -> nonEmptyText(6, 32) .verifying(
               "User with this login already exists!", groupName => GroupRepository.byName(groupName) == null
-            ),
-            "studentIndicies" -> text
+            )
           )
           {
-            (id,name,indices) => {
+            (id,name) => {
                 val group = GroupRepository.byId(id).get
-                group.setStudents(UserRepository.byStudentIds(cutIndicesFromString(indices)))
                 group setName name
                 group
             }
           }
-          {group=> Some(group.getGroup_id,group.getName,group.getStudents.map(_.getStudent_id).mkString(" "))}
+          {group=> Some(group.getGroup_id,group.getName)}
         )
 
         private def cutIndicesFromString(str : String) = {

@@ -1,3 +1,4 @@
+/*
 package controllers
 
 import play.api.mvc.{Action, Controller}
@@ -20,3 +21,4 @@ object AjaxController extends Controller{
   }
 
 }
+*/
