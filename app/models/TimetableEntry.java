@@ -2,8 +2,10 @@ package models;
 import play.db.ebean.Model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+
 import java.sql.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,6 +19,8 @@ import javax.persistence.*;
 public class TimetableEntry extends Model {
 
     private static final long serialVersionUID = 1L;
+    private Calendar cal = Calendar.getInstance();
+
 
     public int getTimetable_entry_id() {
         return timetable_entry_id;
@@ -98,6 +102,34 @@ public class TimetableEntry extends Model {
 
     public TimetableEntry(){}
 
+    public boolean isAt(int year, int week)
+    {
+
+      Calendar c1 = GregorianCalendar.getInstance();
+      Calendar c2 = GregorianCalendar.getInstance();
+      Calendar c3 = GregorianCalendar.getInstance();
+
+      c1.setFirstDayOfWeek(Calendar.MONDAY);
+      c1.set(Calendar.YEAR,year);
+      c1.set(Calendar.WEEK_OF_YEAR,week);
+      c1.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+
+      c3.setFirstDayOfWeek(Calendar.MONDAY);
+      c3.set(Calendar.YEAR, year);
+      c3.set(Calendar.WEEK_OF_YEAR,week);
+      c3.set(Calendar.DAY_OF_WEEK,Calendar.SATURDAY);
+
+
+      c2.setTime(time);
+        System.out.println(new Date(c2.getTimeInMillis()).toString());
+       // System.out.println("Given timestamp: "+ time.toString());
+        System.out.println("Comparing : "+ c1.getTimeInMillis()+" < "+ c2.getTimeInMillis()+" < "+c3.getTimeInMillis());
+
+      return c2.getTimeInMillis() >= c1.getTimeInMillis() && c2.getTimeInMillis() <= c3.getTimeInMillis();
+    }
+
+
+
     public Set<Grade> getGrades() {
         return grades;
     }
@@ -153,5 +185,10 @@ public class TimetableEntry extends Model {
 	public void setHomework(Homework homework) {
 		this.homework = homework;
 	}
+
+    public int getDayOfTheWeek(){
+        cal.setTime(getTime());
+        return cal.get(Calendar.DAY_OF_WEEK);
+    }
 
 }

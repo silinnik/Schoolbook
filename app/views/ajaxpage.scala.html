@@ -1,0 +1,26 @@
+@()(implicit request : play.api.mvc.Request[Any])
+@import helper._
+@base("AJAX!"){
+
+
+
+@javascriptRouter("ajaxtestRouter")(
+routes.javascript.AjaxController.processAjaxMessage
+)
+
+<p id="targ">This message was...</p>
+<button id="mybutton" value="ButtonName" name="BTNName">BTNNT</button>
+
+
+<script>
+    $("#mybutton").bind('click', function() {
+        ajaxtestRouter.controllers.AjaxController.processAjaxMessage("HJALKSDHLAJSHD").ajax({
+            success: function(msg) {
+                $("#targ").text(msg) ;
+            }
+        })
+    });
+</script>
+
+
+}

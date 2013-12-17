@@ -28,3 +28,6 @@ GET     /js/*file                   controllers.Assets.at(path="/public/js", fil
 GET     /webjars/*file              controllers.WebJarAssets.at(file)
 
 GET     /                           controllers.UserController.todo()
+POST    /RequestAjax               controllers.AjaxController.processAjaxMessage(msg : String)
+GET     /Ajax                       controllers.AjaxController.show()
+GET     /T/:year/:week/:group       controllers.TimetableController.showTimetableForGroup(group:Int, year:Int,week:Int)

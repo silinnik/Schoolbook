@@ -1,0 +1,38 @@
+@(timetableEntries : Set[TimetableEntry])(implicit request : play.api.mvc.Request[Any])
+@import models._
+
+@base("Timetable"){
+    <div class="row">
+        <div class="container">
+        </div>
+    </div><!--row-->
+
+    <div class="table table-responsive popover-examples">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th> Time </th>
+                <th> Monday </th>
+                <th> Tuesday</th>
+                <th> Wednesday </th>
+                <th> Thursday </th>
+                <th> Friday </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @for(entryNumber <- 1 to {math.max(timetableEntries.maxBy(_.getNumber).getNumber,8)}){
+                @for(dayOfWeek <- 0 to 4) {
+                    <tr>
+                        <th> @entryNumber </th>
+                        @{
+                        val entry = timetableEntries.find(e => e.getDayOfTheWeek == dayOfWeek && e.getNumber == entryNumber)
+                        if(entry.isEmpty) timetableentryplaceholder(0,0,0) else timetableitem(entry.get)
+                        }
+                    </tr>
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+}

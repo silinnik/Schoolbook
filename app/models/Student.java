@@ -5,6 +5,9 @@ import models.repositories.GroupRepository;
 import scala.Option;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.persistence.*;
 
@@ -21,8 +24,21 @@ public class Student extends User {
 	private int student_id;
 	
 	public Student(String login, String name, String surname, String password){
-		super(login, name, surname, password);
-	}
+
+        super(login, name, surname, password);
+
+/*        Calendar cal = new GregorianCalendar(2013, 9, 2);
+        System.out.println("Calendar shows year: "+cal.get(Calendar.YEAR));
+        Date fuckingDate = new Date(cal.getTimeInMillis());
+        System.out.println("Date shows year: "+fuckingDate.getYear());
+        System.out.println("Date as string: "+fuckingDate.toString());
+        System.out.println("Calendar as string: "+cal.get(Calendar.YEAR)+"-"+cal.get(Calendar.MONTH)+"-"+cal.get(Calendar.DAY_OF_MONTH));
+        cal = Calendar.getInstance();
+        cal.setTime(fuckingDate);
+        System.out.println("Calendar made of date shows year: "+cal.get(Calendar.YEAR));
+        System.out.println("Calendar made of date as string: "+cal.get(Calendar.YEAR)+"-"+cal.get(Calendar.MONTH)+"-"+cal.get(Calendar.DAY_OF_MONTH));*/
+
+    }
 
 	public Student(){}
 
@@ -62,9 +78,9 @@ public class Student extends User {
 	@ManyToOne
 	private Group group;
 
-	public Group getGroup(){
-	return this.group;
-	}
+//	public Group getGroup(){
+//	return this.group;
+//	}
 
 	public void setGroup(Group group){
 	this.group = group;

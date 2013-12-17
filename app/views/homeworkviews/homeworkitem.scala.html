@@ -1,0 +1,16 @@
+@(item : Homework,editable:Boolean)
+@import models.Homework
+
+@if(editable){
+    <div>
+        <textarea cols='30' rows='6' > @item.getHomework_text </textarea>
+    </div>
+    <a href='#'>
+        <button data-homeworkid="@item.getHomework_id" type='button' class='btn btn-success btn-xs'>
+            Save
+            <span class='glyphicon glyphicon-ok'></span>
+        </button>
+    </a>
+} else {
+    @item.getHomework_text
+}

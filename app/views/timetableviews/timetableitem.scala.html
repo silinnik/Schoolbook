@@ -1,0 +1,26 @@
+@(item : TimetableEntry)
+@import models._
+@import homeworkviews.homeworkitem
+<th class="info">
+    @item.getSubject.getName
+    <!--TODO ADD USER ROLE FIFFERENTIATION-->
+    <ul class="list-inline">
+        <li>
+            <!--TODO: add ajax linking to window with timetable editing-->
+            <a href="#"> <span class="glyphicon glyphicon-wrench ibtn btn-icon"> </span> </a>
+        </li>
+        <li>
+            <a href="#"  class="pop-top" data-toggle="popover" title="Grades:" data-content="все очень плохо"> <span class='glyphicon glyphicon-font ibtn btn-icon'> </span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="pop-top" data-toggle="popover" title="Homework:" data-content="@homeworkitem(item.getHomework,true)">
+                <span class='glyphicon glyphicon-book ibtn btn-icon'> </span>
+            </a>
+        </li>
+        <li>
+            <a href="#"> <span class='glyphicon glyphicon-trash ibtn btn-icon'> </span> </a>
+        </li>
+    </ul>
+</th>
+

@@ -13,6 +13,11 @@
 
 /*  my own styles */
 
+img.avatar{
+    width: 140px;
+    height: 140px;
+}
+
 .right{
     position:absolute;
     right:0px;    
@@ -23,7 +28,7 @@
     margin-left:auto;
     margin-right:auto;
     width:70%;
-    background-color:#b0e0e6;
+    
 }
 
 
@@ -35,6 +40,98 @@
 .list-item:hover{
     color: #484849;
 }
+
+
+.scrollable{
+    overflow: scroll;
+    height: 300px;
+    width: 100%;
+}
+
+
+.color-icon{
+  font-size: 18px !important;
+  color: #05b308;    
+}
+
+.color-icon:hover,
+.color-icon:focus {
+  color: #026c0f;
+  text-decoration: none;
+}
+
+
+.ibtn {
+  display: inline-block;
+  padding: 1px ;
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  color: #acaaaa;
+  
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+}
+
+
+.btn-icon:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.btn-icon:hover,
+.ibtn:hover,
+.btn-icon:focus {
+  color: #484747;
+  text-decoration: none;
+}
+
+.btn-icon:active,
+.btn-icon.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn-icon.disabled,
+.btn-icon[disabled],
+fieldset[disabled] .btn-icon {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+
+th .btn-icon{
+    visibility: hidden;
+   
+}
+th:hover .btn-icon{
+    display: inline-block;
+    visibility: visible;    
+}
+
+.table-hover tr:hover .btn-icon{
+    display: inline-block;
+    visibility: visible;
+}
+
 
 /*  my own styles */
 
@@ -469,7 +566,7 @@ h1,
 h2,
 h3 {
   margin-top: 0px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 h1 small,
@@ -618,7 +715,7 @@ cite {
 ul,
 ol {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 ul ul,
@@ -640,8 +737,8 @@ ol ol {
 
 .list-inline > li {
   display: inline-block;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding-right: 3px;
+  padding-left: 3px;
 }
 
 .list-inline > li:first-child {
@@ -862,6 +959,7 @@ pre code {
 .row {
   margin-right: -15px;
   margin-left: -15px;
+  margin-bottom: 15px;
 }
 
 .row:before,
@@ -1674,7 +1772,7 @@ table {
 }
 
 th {
-  text-align: left;
+  text-align: center;
   font-style: normal;
   font-weight: normal;
 }
@@ -1755,7 +1853,7 @@ th {
 
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
-  background-color: #f5f5f5;
+  background-color: #e4f4fc;
 }
 
 table col[class*="col-"] {

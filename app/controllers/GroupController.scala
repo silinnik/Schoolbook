@@ -3,6 +3,8 @@ import  play.api.mvc._
 import models.{User, Group}
 import com.avaje.ebean.Ebean
 import scala.collection.JavaConversions._
+import play.api.Routes
+
 /**
  * Date: 12/14/13
 */
@@ -17,5 +19,9 @@ object GroupController extends Controller{
   def processNewGroup = TODO
   def requestEditGroup = TODO
   def processEditGroup = TODO
+
+
+
+
 
 }
