@@ -13,6 +13,17 @@
 
 /*  my own styles */
 
+.for-pop{
+    margin: 3px;
+}
+
+.alert-xs {
+  padding: 3px;
+  margin: 5px 3px
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
 img.avatar{
     width: 140px;
     height: 140px;
@@ -47,6 +58,14 @@ img.avatar{
     height: 300px;
     width: 100%;
 }
+
+
+.pop-scrollable{
+    overflow: scroll;
+    height: 150px;
+    width: 100%;
+}
+
 
 
 .color-icon{
@@ -1853,7 +1872,7 @@ th {
 
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
-  background-color: #e4f4fc;
+  background-color: #e8f3fc;
 }
 
 table col[class*="col-"] {
@@ -5517,6 +5536,7 @@ a.thumbnail.active {
 .alert {
   padding: 15px;
   margin-bottom: 20px;
+  margin-top: 2px;
   border: 1px solid transparent;
   border-radius: 4px;
 }
