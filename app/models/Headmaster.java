@@ -17,21 +17,16 @@ public class Headmaster extends User {
 	private int headmaster_id;
 
 	public int getHeadmaster_id() {
-		return headmaster_id;
+		return getUser_id();
 	}
 
 	public void setHeadmaster_id(int headmaster_id) {
-		this.headmaster_id = headmaster_id;
+		this.setUser_id(headmaster_id);
 	}
 	
 	public Headmaster(){
-	
-	}
 
-    @Override
-    public String getUserType(){
-        return "H";
-    }
+	}
 
 
     public Headmaster (String login, String name, String surname, String password){

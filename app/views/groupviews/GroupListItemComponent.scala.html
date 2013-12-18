@@ -2,12 +2,12 @@
 @import models.Group
 
 <tr>
-    @if(editable){ <th class="userselection"><input data-groupid = "@group.getGroup_id" type="checkbox" name="terms" /></th> }
+    @if(editable){ <th class="userselection"><input name="group_id" value="@group.getGroup_id" type="checkbox" name="terms" /></th> }
     <th> @group.getGroup_id </th>
-    <th> @group.getName </th>
+    <th> <a href="@controllers.routes.GroupController.requestEditGroup(group.getGroup_id)"> @group.getName </a></th>
     <th> @group.getStudents.size </th>
     @if(editable){
-        <th> <a href="@routes.controllers.GroupController.requestEditGroup(group.getGroup_id)">Edit</a></th>
+        <th> <a href="@controllers.routes.GroupController.requestEditGroup(group.getGroup_id)">Edit</a></th>
     }
-    <th> <a href="@routes.controllers.TimetableController.showTimetableForGroup(group.getGroup_id)">Timetable</a></th>
+    <th> <a href="@controllers.routes.TimetableController.showTimetableForGroup(group.getGroup_id)">Timetable</a></th>
 </tr>

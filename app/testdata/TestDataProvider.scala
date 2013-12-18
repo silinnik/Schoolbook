@@ -30,22 +30,6 @@ object TestDataProvider {
 
     val headmaster = new Student("silinnik","Nikita","Silin",password)
 
-    student1.save()
-    student2.save()
-    student3.save()
-    student4.save()
-    student5.save()
-    student6.save()
-    student7.save()
-    student8.save()
-    student9.save()
-    student10.save()
-    student11.save()
-    student12.save()
-    student13.save()
-    student14.save()
-    student15.save()
-
     //READY
     val subjectMath = new Subject("Math")
     val subjectPhysics = new Subject("Physics")
@@ -77,6 +61,40 @@ object TestDataProvider {
     groupB.save()
     groupC.save()
 
+    groupA.addStudent(student1)
+    groupA.addStudent(student2)
+    groupA.addStudent(student3)
+    groupA.addStudent(student4)
+    groupA.addStudent(student5)
+
+    groupB.addStudent(student6)
+    groupB.addStudent(student7)
+    groupB.addStudent(student8)
+    groupB.addStudent(student9)
+    groupB.addStudent(student10)
+
+    groupC.addStudent(student11)
+    groupC.addStudent(student12)
+    groupC.addStudent(student13)
+    groupC.addStudent(student14)
+    groupC.addStudent(student15)
+
+    student1.save()
+    student2.save()
+    student3.save()
+    student4.save()
+    student5.save()
+    student6.save()
+    student7.save()
+    student8.save()
+    student9.save()
+    student10.save()
+    student11.save()
+    student12.save()
+    student13.save()
+    student14.save()
+    student15.save()
+
 
 
     val TimeentryMath1 = new TimetableEntry(0,1,groupA,teacher4,subjectMath)
@@ -107,23 +125,7 @@ object TestDataProvider {
     TimeentryEngl2.save()
     TimeentryEngl3.save()
 
-    groupA.getStudents.add(student1)
-    groupA.getStudents.add(student2)
-    groupA.getStudents.add(student3)
-    groupA.getStudents.add(student4)
-    groupA.getStudents.add(student5)
 
-    groupB.getStudents.add(student6)
-    groupB.getStudents.add(student7)
-    groupB.getStudents.add(student8)
-    groupB.getStudents.add(student9)
-    groupB.getStudents.add(student10)
-
-    groupC.getStudents.add(student11)
-    groupC.getStudents.add(student12)
-    groupC.getStudents.add(student13)
-    groupC.getStudents.add(student14)
-    groupC.getStudents.add(student15)
 
 
     groupA.getTimetable_entries.add(TimeentryChem1)
@@ -162,31 +164,16 @@ object TestDataProvider {
     Homework3.save()
     Homework4.save()
 
-    student1.update()
-    student2.update()
-    student3.update()
-    student4.update()
-    student5.update()
-    student6.update()
-    student7.update()
-    student8.update()
-    student9.update()
-    student10.update()
-    student11.update()
-    student12.update()
-    student13.update()
-    student14.update()
-    student15.update()
 
     subjectMath.update()
     subjectPhysics.update()
     subjectChemistry.update()
     subjectEnglish.update()
 
-    teacher1.save()
-    teacher2.save()
-    teacher3.save()
-    teacher4.save()
+    teacher1.update()
+    teacher2.update()
+    teacher3.update()
+    teacher4.update()
 
     groupA.update()
     groupB.update()

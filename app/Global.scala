@@ -10,7 +10,7 @@ object Global extends GlobalSettings {
 
 
   override def onStart(app: Application) {
-    testdata.TestDataProvider.InitializeDatabaseWithDefaultValues()
+
   }
 
 

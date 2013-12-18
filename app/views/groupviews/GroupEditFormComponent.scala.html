@@ -11,17 +11,17 @@
     </ul>
 }
 
-@form(action = controllers.routes.UserController.processNewUser,'class->"Form1") {
+@form(action = controllers.routes.GroupController.processEditGroup,'class->"Form1") {
 
     @inputText(
-        userForm("name"),
+        groupForm("name"),
         'size -> 16  ,
         '_label -> "Login",
         '_showConstraints -> false
     )
 
     @inputText(
-        userForm("id"),
+        groupForm("id"),
         'type -> "hidden",
         '_showConstraints -> false
     )

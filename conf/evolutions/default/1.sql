@@ -6,17 +6,18 @@
 create table event (
   event_id                  integer auto_increment not null,
   type                      varchar(255) not null,
-  time                      timestamp not null,
+  time                      datetime not null,
   constraint pk_event primary key (event_id))
 ;
 
 create table grade (
-  graduation_id             bigint auto_increment not null,
+  grade_id                  bigint auto_increment not null,
   student_user_id           integer,
   timetable_entry_timetable_entry_id integer,
   grade_value               integer not null,
   grade_annotation          varchar(255),
-  constraint pk_grade primary key (graduation_id))
+  week                      integer not null,
+  constraint pk_grade primary key (grade_id))
 ;
 
 create table GROUPP (
@@ -39,9 +40,8 @@ create table subject (
 
 create table timetable_entry (
   timetable_entry_id        integer auto_increment not null,
-  cal                       timestamp,
-  timetable_entry           bigint,
-  time                      date not null,
+  cal                       datetime,
+  day                       integer not null,
   number                    integer not null,
   group_group_id            integer,
   teacher_user_id           integer,
@@ -59,7 +59,7 @@ create table user (
   headmaster_id             integer,
   teacher_id                integer,
   student_id                integer,
-  group_group_id            integer,
+  group_id                  integer,
   constraint pk_user primary key (user_id))
 ;
 
@@ -67,36 +67,32 @@ alter table grade add constraint fk_grade_student_1 foreign key (student_user_id
 create index ix_grade_student_1 on grade (student_user_id);
 alter table grade add constraint fk_grade_timetable_entry_2 foreign key (timetable_entry_timetable_entry_id) references timetable_entry (timetable_entry_id) on delete restrict on update restrict;
 create index ix_grade_timetable_entry_2 on grade (timetable_entry_timetable_entry_id);
-alter table timetable_entry add constraint fk_timetable_entry_homework_3 foreign key (timetable_entry) references homework (homework_id) on delete restrict on update restrict;
-create index ix_timetable_entry_homework_3 on timetable_entry (timetable_entry);
-alter table timetable_entry add constraint fk_timetable_entry_group_4 foreign key (group_group_id) references GROUPP (group_id) on delete restrict on update restrict;
-create index ix_timetable_entry_group_4 on timetable_entry (group_group_id);
-alter table timetable_entry add constraint fk_timetable_entry_teacher_5 foreign key (teacher_user_id) references user (user_id) on delete restrict on update restrict;
-create index ix_timetable_entry_teacher_5 on timetable_entry (teacher_user_id);
-alter table timetable_entry add constraint fk_timetable_entry_subject_6 foreign key (subject_subject_id) references subject (subject_id) on delete restrict on update restrict;
-create index ix_timetable_entry_subject_6 on timetable_entry (subject_subject_id);
-alter table user add constraint fk_user_group_7 foreign key (group_group_id) references GROUPP (group_id) on delete restrict on update restrict;
-create index ix_user_group_7 on user (group_group_id);
+alter table timetable_entry add constraint fk_timetable_entry_group_3 foreign key (group_group_id) references GROUPP (group_id) on delete restrict on update restrict;
+create index ix_timetable_entry_group_3 on timetable_entry (group_group_id);
+alter table timetable_entry add constraint fk_timetable_entry_teacher_4 foreign key (teacher_user_id) references user (user_id) on delete restrict on update restrict;
+create index ix_timetable_entry_teacher_4 on timetable_entry (teacher_user_id);
+alter table timetable_entry add constraint fk_timetable_entry_subject_5 foreign key (subject_subject_id) references subject (subject_id) on delete restrict on update restrict;
+create index ix_timetable_entry_subject_5 on timetable_entry (subject_subject_id);
 
 
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists event;
+drop table event;
 
-drop table if exists grade;
+drop table grade;
 
-drop table if exists GROUPP;
+drop table GROUPP;
 
-drop table if exists homework;
+drop table homework;
 
-drop table if exists subject;
+drop table subject;
 
-drop table if exists timetable_entry;
+drop table timetable_entry;
 
-drop table if exists user;
+drop table user;
 
-SET REFERENTIAL_INTEGRITY TRUE;
+SET FOREIGN_KEY_CHECKS=1;
 

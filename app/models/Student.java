@@ -47,7 +47,7 @@ public class Student extends User {
      * @return int representing student id
      */
 	public int getStudent_id() {
-		return student_id;
+		return getUser_id();
 	}
 
     /**
@@ -55,35 +55,27 @@ public class Student extends User {
      * @param student_id
      */
 	public void setStudent_id(int student_id) {
-		this.student_id = student_id;
+		this.setUser_id(student_id);
     }
 
     /**
      * Returns "S"
      * @return "S"
      */
-    @Override
-    public String getUserType(){
-          return "S";
-    }
 
     /**
      * Returns the group, student belongs to
      * @return Optional value which may contain the
      */
-    public Option<Group> getGroup(){
-       return GroupRepository.byStudent(this);
-    }
+    @Column
+	private int group_id;
 
-	@ManyToOne
-	private Group group;
+	public Group getGroup(){
+	    return Ebean.find(Group.class).where().idEq(this.group_id).findUnique();
+	}
 
-//	public Group getGroup(){
-//	return this.group;
-//	}
-
-	public void setGroup(Group group){
-	this.group = group;
+	public void setGroup(int group){
+	    this.group_id = group;
 	}
 	
 }

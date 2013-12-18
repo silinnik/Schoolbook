@@ -30,7 +30,7 @@ public class TimetableEntryRepository {
        return packInOption(find.where().eq("date", date.toString()).findUnique());
     }
 
-    public static Option<TimetableEntry> byGrade(Grade grade){
+ /*   public static Option<TimetableEntry> byGrade(Grade grade){
         for(TimetableEntry entry : find.all()){
             for(Grade gradeInEntry : entry.getGrades()){
                 if(gradeInEntry.getGrade_id() == grade.getGrade_id())
@@ -38,7 +38,7 @@ public class TimetableEntryRepository {
             }
         }
         return ScalaLang.none();
-    }
+    }*/
 
     private static Option<TimetableEntry> packInOption(TimetableEntry entry){
         return entry == null ? ScalaLang.none() : new Some(entry);

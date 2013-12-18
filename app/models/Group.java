@@ -1,6 +1,8 @@
 package models;
 import com.avaje.ebean.Ebean;
+import models.repositories.GroupRepository;
 import play.db.ebean.Model;
+import scala.Option;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,11 +24,7 @@ public class Group extends Model {
 	private int group_id;
 
     public Set<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
+        return Ebean.find(Student.class).where().eq("group_id",this.getGroup_id()).findSet();
     }
 
     @OneToMany(mappedBy = "group",cascade=CascadeType.PERSIST)
@@ -34,10 +32,7 @@ public class Group extends Model {
 	
 	@Column(nullable = false)
 	private String name;
-	
-	@OneToMany(mappedBy = "group")
-	private Set<Student> students;
-	
+
 	public int getGroup_id() {
 		return group_id;
 	}
@@ -55,20 +50,15 @@ public class Group extends Model {
 	}
 
     public void addStudent(Student student){
-        students.add(student);
+        student.setGroup(this.getGroup_id());
     }
 
     public void removeStudent(Student student){
-        if(hasStudent(student))
-            students.remove(student);
+        student.setGroup(-1);
     }
 
     public boolean hasStudent(Student student){
-        for(Student studentInGroup : this.getStudents()){
-            if(studentInGroup.getStudent_id() == student.getStudent_id())
-                return true;
-        }
-        return false;
+       return student.getGroup().getGroup_id() == this.getGroup_id();
     }
 
 	public String getName() {
@@ -81,7 +71,10 @@ public class Group extends Model {
 
 	public Group(Set<TimetableEntry> timetable_entries, String name, Set<Student> students) {
         this.timetable_entries = timetable_entries == null ? new HashSet<TimetableEntry>() : timetable_entries;
-        this.students = students == null  ?  new HashSet<Student>() : students;
+        if(students!=null)
+        for(Student student : students){
+            this.addStudent(student);
+        }
 		this.name = name;
 	}
 	

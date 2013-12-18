@@ -29,7 +29,7 @@ public class User extends Model {
 	
 	@Column(nullable=false)
 	private String password;
-	
+
 	@Column(name="user_type", nullable=false, updatable=false, insertable=false)
 	private String user_type;
 	
@@ -81,7 +81,7 @@ public class User extends Model {
 	}
 
 	public String getUserType(){
-		return "U";
+		return user_type;
 	}
 
     public Teacher asTeacher(){

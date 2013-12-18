@@ -27,10 +27,7 @@
                 @for(dayOfWeek <- 0 to 4) {
 
 
-                        @{
-                        val entry = timetableEntries.find(e => e.getDayOfTheWeek == dayOfWeek && e.getNumber == entryNumber)
-                        if(entry.isEmpty) timetableentryplaceholder(0,0,0) else timetableitem(entry.get)
-                        }
+
 
                 }
                 </tr>

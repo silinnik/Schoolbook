@@ -1,8 +1,33 @@
 @(grouplist : Set[Group],editable : Boolean = true)(implicit request : play.api.mvc.Request[Any])
 @import models._
+@import helper._
+
+@javascriptRouter("jsroutes")(
+routes.javascript.GroupController.processRemoveGroups
+)
 
 
 @base("Groups list"){
     @GroupListComponent(grouplist,editable)
-        <a href="routes.controllers.GroupController.requestNewGroup">Create group</a>
+       @if(editable){ <a href="@controllers.routes.GroupController.requestNewGroup">Create group</a> }
+    <input id="coolbutton" type="button" value="Remove">
+
+    <script>
+
+
+        var indices = "";
+
+        $("#coolbutton").bind('click', function() {
+            $('input:checked').each(function(i, obj) {
+             indices+=$(obj).val()+","
+            });
+
+            window.location.href = jsroutes.controllers.GroupController.processRemoveGroups(indices);
+
+        });
+
+
+    </script>
 }
+
+

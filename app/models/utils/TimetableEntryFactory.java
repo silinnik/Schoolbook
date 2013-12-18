@@ -11,14 +11,14 @@ import java.sql.Date;
  */
 public class TimetableEntryFactory {
 
-    public static TimetableEntry TimetableEntry(Date date, int number, int groupId, int teacherId, int subjectId){
+    public static TimetableEntry TimetableEntry(int day, int number, int groupId, int teacherId, int subjectId){
         Group group = GroupRepository.byId(groupId).get();
         Teacher teacher = UserRepository.findTeacherById(teacherId).get();
         Subject subject = SubjectRepository.byId(subjectId).get();
-        return new TimetableEntry(date,number,group,teacher,subject,null,null);
+        return new TimetableEntry(day,number,group,teacher,subject);
     }
 
-    public static TimetableEntry TimetableEntry(int id,Date date, int number, int groupId, int teacherId, int subjectId){
+    public static TimetableEntry TimetableEntry(int id,int day, int number, int groupId, int teacherId, int subjectId){
         TimetableEntry entry = TimetableEntryRepository.byId(id).get();
         Group group = GroupRepository.byId(groupId).get();
         Teacher teacher = UserRepository.findTeacherById(teacherId).get();
@@ -27,7 +27,7 @@ public class TimetableEntryFactory {
         entry.setGroup(group);
         entry.setTeacher(teacher);
         entry.setSubject(subject);
-        entry.setTime(date);
+        entry.setDay(day);
         entry.setNumber(number);
 
         return entry;

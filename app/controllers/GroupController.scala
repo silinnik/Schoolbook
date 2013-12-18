@@ -11,13 +11,14 @@ import scala.collection.JavaConversions._
 import play.api.Routes
 import models.repositories.GroupRepository
 
+
 /**
  * Date: 12/14/13
 */
 object GroupController extends Controller{
 
-  def viewGroupList(groupId: Int) = Action { implicit request =>
-     Ok(views.html.groupviews.GroupListPage.render(GroupRepository.all(),false,request))
+  def viewGroupList = Action { implicit request =>
+     Ok(views.html.groupviews.GroupListPage.render(GroupRepository.all(),true,request))
   }
 
   def viewGroupMembers(groupId : Int) = TODO
@@ -31,15 +32,17 @@ object GroupController extends Controller{
       formWithErrors => BadRequest(views.html.groupviews.GroupCreatePage.render(formWithErrors,request)),
       correctGroupInstance => {
         correctGroupInstance.save()
-        Redirect(routes.GroupController.viewGroupList(correctGroupInstance.getGroup_id)).flashing(("result_message","Group was successfully created!"))
+        Redirect(controllers.routes.GroupController.viewGroupList).flashing(("result_message","Group was successfully created!"))
       }
     )
   }
 
-  def viewGroupMembers(groupId : Int) = TODO
+  def requestEditGroup(group_id : Int) = Action { implicit request =>
+    GroupRepository.byId(group_id) match {
+      case Some(group) => Ok(views.html.groupviews.GroupEditPage.render(GroupData.groupCreateForm.fill(group),request))
+      case _ => BadRequest("Bad group id!")
+    }
 
-  def requestEditGroup = Action { implicit request =>
-    Ok(views.html.groupviews.GroupEditPage.render(GroupData.groupCreateForm,request))
   }
 
   def processEditGroup = Action { implicit request =>
@@ -47,9 +50,22 @@ object GroupController extends Controller{
       formWithErrors => BadRequest(views.html.groupviews.GroupEditPage.render(formWithErrors,request)),
       correctGroupInstance => {
         correctGroupInstance.update()
-        Redirect(routes.GroupController.viewGroupList(correctGroupInstance.getGroup_id)).flashing(("result_message","Group was successfully created!"))
+        Redirect(controllers.routes.GroupController.viewGroupList).flashing(("result_message","Group was successfully created!"))
       }
     )
+  }
+
+
+  def processRemoveGroups(indices : String) = Action { implicit request =>
+    val intIndicies = indices.replace(","," ").trim.split(" ").map(_.toInt).toArray
+    for(i <- intIndicies){
+      GroupRepository.byId(i) match {
+        case Some(group) => group.delete()
+        case _ => ()
+      }
+    }
+
+    Redirect(controllers.routes.GroupController.viewGroupList)
   }
 
 /*

@@ -7,14 +7,14 @@
 GET     /AddUser                    controllers.UserController.requestNewUser()
 POST    /AddUser                    controllers.UserController.processNewUser()
 
-GET     /EditUser/:userId            controllers.UserController.requestEditUser(userId : Int)
+GET     /EditUser/:userId           controllers.UserController.requestEditUser(userId : Int)
 POST    /EditUser/                  controllers.UserController.processEditUser()
 
-GET     /DeleteUser/:userId          controllers.UserController.removeUser(userId:Int)
+GET     /DeleteUser/:userId         controllers.UserController.removeUser(userId:Int)
 
 GET     /UserList                   controllers.UserController.viewUserList()
 
-GET     /Group/*id                  controllers.GroupController.viewGroup(id:Int)
+#GET     /Group/*id                  controllers.GroupController.viewGroup(id:Int)
 
 # Login services
 GET     /Login                      controllers.LoginController.requestLogin()
@@ -28,6 +28,14 @@ GET     /js/*file                   controllers.Assets.at(path="/public/js", fil
 GET     /webjars/*file              controllers.WebJarAssets.at(file)
 
 GET     /                           controllers.UserController.todo()
-POST    /RequestAjax               controllers.AjaxController.processAjaxMessage(msg : String)
-GET     /Ajax                       controllers.AjaxController.show()
-GET     /T/:year/:week/:group       controllers.TimetableController.showTimetableForGroup(group:Int, year:Int,week:Int)
+#POST    /RequestAjax                controllers.AjaxController.processAjaxMessage(msg : String)
+#GET     /Ajax                       controllers.AjaxController.show()
+GET     /Timetable/:group       controllers.TimetableController.showTimetableForGroup(group:Int)
+GET     /GroupList                  controllers.GroupController.viewGroupList
+GET     /CreateGroup                controllers.GroupController.requestNewGroup
+GET     /EditGroup/:group           controllers.GroupController.requestEditGroup(group: Int)
+POST    /CreateGroup                controllers.GroupController.processNewGroup
+POST    /EditGroup                  controllers.GroupController.processEditGroup
+GET     /Init                       controllers.SystemController.InitializeSystem()
+GET     /RemoveGroups               controllers.GroupController.processRemoveGroups(indices:String)
+GET     /SysAttachJS               controllers.SystemController.javascriptRoutes
