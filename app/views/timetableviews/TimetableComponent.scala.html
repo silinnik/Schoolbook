@@ -1,0 +1,87 @@
+@(items: Set[MTimetableEntry], groupId: Long, year: Integer, week: Integer)
+@import models._
+@import java.util.Calendar
+
+<div class="col-md-1">
+    <a href=""> <span class="glyphicon glyphicon-chevron-left btn-icon"> </span> </a>
+</div>
+
+<div class="col-md-10">
+
+    <div class="table table-responsive popover-examples" id="timetable-window" data-year="@year" data-week="@week" data-group="@groupId">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th> Time</th>
+                    <th> Monday</th>
+                    <th> Tuesday</th>
+                    <th> Wednesday</th>
+                    <th> Thursday</th>
+                    <th> Friday</th>
+                </tr>
+            </thead>
+            <tbody>
+            @for(number <- 1 to 8) {
+                <tr>
+                    <th>@number</th>
+
+                    @defining(items.filter(_.getNumber == number)) { tts =>
+
+
+                        @for(day <- Calendar.MONDAY to Calendar.FRIDAY) {
+
+                            @defining(tts.find(_.getDay == day)) { tt =>
+                                @tt match {
+                                    case Some(t) => {
+                                        @TimetableItemComponent(t)
+                                    }
+                                    case _ => {
+                                        @TimetableEntryPlaceholderComponent(year, week, day, number)
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                </tr>
+            }
+            </tbody>
+        </table>
+        <script src="/js/ajax/ajax_modal.js"></script>
+        <script src="/js/ajax/ajax_forms.js"></script>
+
+        <script>
+
+        $ ( document.body ).on ( 'click', '.timetable_placeholder', function ( e ) {
+            e.preventDefault
+            $this = $ ( this )
+            var year, week, groupid, day, number, $timetable_window
+
+            $timetable_window = $ ( '#timetable-window' )
+            year = $timetable_window.data ( 'year' )
+            week = $timetable_window.data ( 'week' )
+            groupid = $timetable_window.data ( 'group' )
+            day = $this.data ( 'day' )
+            number = $this.data ( 'number' )
+
+            jsRoutes.controllers.TimetableController.ajax_GroupTimetableEntryFormRequest ( year, week, day, number, groupid ).ajax ( ).success ( function ( data ) {
+            showModal ( data )
+            } )
+        } )
+
+        $ (document.body ).on('click','.timetable-grades',function(e){
+            e.preventDefault
+            $this = $ ( this )
+
+            jsRoutes.controllers.TimetableController.ajax_TimetableGradesRequest($this.closest('.timetable-entry' ).data('timetable-id') ).ajax( ).success(function(data){
+                showModal(data)
+            })
+
+        })
+
+        </script>
+    </div>
+</div>
+<div class="col-md-1">
+    <a href=""> <span class="glyphicon glyphicon-chevron-right btn-icon"> </span> </a>
+</div>

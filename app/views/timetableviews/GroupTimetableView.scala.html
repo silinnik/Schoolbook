@@ -1,0 +1,5 @@
+@(items : Set[MTimetableEntry],groupId:Long,year:Int,week:Int)(implicit request : play.api.mvc.Request[Any])
+@import timetableviews._
+@base("Test Timetable"){
+    @TimetableComponent(items,groupId,year,week)
+}

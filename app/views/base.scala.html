@@ -1,89 +1,75 @@
-@(title:String)(content : Html)(implicit request : play.api.mvc.Request[Any])
+@(title: String)(content: Html)(implicit request: play.api.mvc.Request[Any])
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-    <title>@title</title>
+        <title>@title</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <!-- Bootstrap theme -->
-    <!-- <link href="../../css/bootstrap-theme.min.css" rel="stylesheet"> -->
+            <!-- Bootstrap core CSS -->
+        <link href="/css/bootstrap.css" rel="stylesheet">
+            <!-- Bootstrap theme -->
+            <!-- <link href="../../css/bootstrap-theme.min.css" rel="stylesheet"> -->
 
-    <!-- Custom styles for this template -->
-    <link href="/css/theme.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
+            <!-- Custom styles for this template -->
+        <link href="/css/theme.css" rel="stylesheet">
+        <script type="text/javascript" src="@controllers.routes.SystemController.javascriptRoutes"> </script>
+            <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+            <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <script type="text/javascript" src="@controllers.routes.SystemController.javascriptRoutes"></script>
-    <![endif]-->
+        < ![ endif ] -->
 
 
+    </head>
 
-</head>
-
-<body>
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-@navbar()(request)
+    <body>
+        <script src = "https://code.jquery.com/jquery-1.10.2.min.js" > </script>
+        <script src="/js/bootstrap.min.js"></script>
 
 
-<div class="container theme-showcase">
+        @navbar()(request)
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">Parsonal items</div>
-                    <div class="list-group">
-                        <a href="admin.html" class="list-group-item ">
-                            <span class="glyphicon glyphicon-wrench"> </span>
-                            Profile
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <span class="glyphicon glyphicon-envelope"> </span>
-                            Messages <span class="badge">14</span> </a>
-                        <a href="#" class="list-group-item">
-                            <span class="glyphicon glyphicon-bullhorn"> </span>
-                            My events</a>
-                    </div><!--/.list-group -->
-                </div> <!--/.panel -->
-            </div><!--/span-->
-            <div class="col-md-9">
-                <div class="jumbotron">
-                    <div class="container">
+        <div class="container theme-showcase">
+            <div class="container">
+                <div class="row">
+                    @if(!request.session.get("connected").isEmpty) {
+                        @SideMenu()
+                    }
+                <div class="col-md-9">
+                    <div class="jumbotron">
+                        <div class="container">
                         @content
-                    </div><!--container-->
-                </div><!--/jumbotrom-->
-            </div><!--/span-->
-        </div><!--/row-->
-    </div>
+                        </div> <!--container-->
+                    </div> <!--/jumbotrom-->
+                </div> <!--/span-->
+                </div> <!--/row-->
+            </div>
 
 
-    <hr>
-    <footer> <h4> <small>
-        &copy; A7B36USI Company: <span class="muted">@@lebedant, @@silinnik, @@kuchuali </span>
-        2013
-    </small> </h4>
+            <hr>
+            <footer>
+                <h4>
+                    <small>
+                        &copy; A7B36USI Company: <span class="muted">@@lebedant, @@silinnik, @@kuchuali </span>
+                        2013
+                    </small>
+                </h4>
 
-    </footer>
+            </footer>
+
+        </div> <!-- /container -->
 
 
-</div> <!-- /container -->
-
-
-<!-- Bootstrap core JavaScript
+        <!-- Bootstrap core JavaScript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+        <!-- Placed at the end of the document so the pages load faster -->
 
-</body>
+    </body>
 </html>

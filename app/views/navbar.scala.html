@@ -35,9 +35,14 @@
             </ul>
             @if(!request.session.get("connected").isEmpty) {
                 <p class="navbar-text pull-right">
-                    Logged in as @request.session.get("connected")
-                    <span class="label label-warning">  </span>
-                    <a href="#" class="navbar-link"> <span class="glyphicon glyphicon-user"></span></span>Username</a>
+                    Logged in as
+                     @request.session.get("role") match {
+                        case Some("H") => {<span class="label label-warning"> Headmaster </span> }
+                        case Some("S") => {<span class="label label-success"> Student </span> }
+                        case Some("T") => {<span class="label label-info"> Teacher </span> }
+                        case _   => {<p>ERROR</p>}
+                     }
+                    <a href="#" class="navbar-link"> <span class="glyphicon glyphicon-user"></span></span>@request.session.get("connected")</a>
                 </p>
             } else {
                 @form(action = controllers.routes.LoginController.processLogin,'class->"navbar-form navbar-right",'role->"form") {

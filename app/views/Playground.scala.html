@@ -1,0 +1,413 @@
+@()
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <!-- <link href="../../css/bootstrap-theme.min.css" rel="stylesheet"> -->
+
+    <!-- Custom styles for this template -->
+    <link href="/css/theme.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <script type="text/javascript" src="@controllers.routes.SystemController.javascriptRoutes"></script>
+    <![endif]-->
+
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Personal items</div>
+        <div class="list-group">
+            <a href="admin.html" class="list-group-item ">
+                <span class="glyphicon glyphicon-wrench"> </span>
+                Profile
+            </a>
+            <a href="#" class="list-group-item">
+                <span class="glyphicon glyphicon-envelope"> </span>
+                Messages <span class="badge">14</span> </a>
+            <a href="#" class="list-group-item">
+                <span class="glyphicon glyphicon-bullhorn"> </span>
+                My events</a>
+        </div><!--/.list-group -->
+    </div> <!--/.panel -->
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Possibility</div>
+        <div class="list-group">
+            <a href="userAdministration.html" class="list-group-item">User admanistration</a>
+            <a href="groupAdmin.html" class="list-group-item">Group management</a>
+            <a href="timetable.html" class="list-group-item active">Timetable management</a>
+            <a href="#" class="list-group-item">Event management</a>
+            <a href="#" class="list-group-item">Subjects management</a>
+        </div><!--/.list-group -->
+    </div> <!--/.panel -->
+</div><!--/span-->
+
+<div class="col-md-9">
+<div class="jumbotron">
+
+<div class="container">
+<div class="row">
+    <div class="col-md-4">
+        <h2>Timetable of </h2>
+    </div>
+    <div class="col-md-4">
+        <select class="form-control">
+            <option>Group A</option>
+            <option>Group B</option>
+            <option>Group C</option>
+            <option>Group D</option>
+            <option>Group E</option>
+            <option>Group F</option>
+            <option>Group G</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="container">
+    </div>
+</div><!--row-->
+
+<div class="table table-responsive popover-examples">
+<table class="table table-bordered">
+<thead>
+<tr>
+    <th> Time </th>
+    <th> Monday </th>
+    <th> Tuesday</th>
+    <th> Wednesday </th>
+    <th> Thursday </th>
+    <th> Friday </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <th> 9.00 </th>
+
+    <th class="info">
+        Math
+        <ul class="list-inline">
+            <li>
+                <a href="#"> <span class='glyphicon glyphicon-trash ibtn btn-icon'> </span>
+                </a>
+            </li>
+            <li>
+                <a href="#"class="pop-top" data-toggle="popover" title="Edit subject:" data-content="
+                                         <input type='text' name='subjectName' placeholder='Math'>
+                                         <div class='for-pop'>
+                                        <input class='btn btn-success btn-xs col-xs-4' type='submit' name='submit' value='Save'>
+                                        </div>
+                                         ">
+                    <span class="glyphicon glyphicon-wrench ibtn btn-icon"> </span>
+                </a>
+            </li>
+            <li>
+                <a href="#"  class="pop-top" data-toggle="popover" title="Grades:" data-content="все очень плохо"> <span class='glyphicon glyphicon-font ibtn btn-icon'> </span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pop-top" data-toggle="popover" title="Homework:" data-content="
+                                        <textarea cols='30' rows='4' >  vam pizda pr. #1 </textarea>
+                                        <div class='for-pop'>
+                                        <input class='btn btn-success btn-xs col-xs-4' type='submit' name='submit' value='Save'>
+                                        <p class='text-danger text-center'>Error!!!</p>
+                                        </div>
+                                        ">
+                    <span class='glyphicon glyphicon-book ibtn btn-icon'> </span>
+                </a>
+            </li>
+        </ul>
+    </th>
+    <th class="active">
+        French
+        <ul class="list-inline">
+            <li>
+                <a href="#"> <span class='glyphicon glyphicon-trash ibtn btn-icon'> </span> </a>
+            </li>
+            <li>
+                <a href="#"> <span class="glyphicon glyphicon-wrench ibtn btn-icon"> </span> </a>
+            </li>
+            <li>
+                <a href="#"  class="pop-top" data-toggle="popover" title="Grades:" data-content="все очень плохо"> <span class='glyphicon glyphicon-font ibtn btn-icon'> </span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pop-top" data-toggle="popover" title="Homework:" data-content="vam pizda">
+                    <span class='glyphicon glyphicon-book ibtn btn-icon'> </span>
+                </a>
+            </li>
+        </ul>
+    </th>
+    <th class="danger">
+        English
+        <ul class="list-inline">
+            <li>
+                <a href="#"> <span class='glyphicon glyphicon-trash ibtn btn-icon'> </span> </a>
+            </li>
+            <li>
+                <a href="#"> <span class="glyphicon glyphicon-wrench ibtn btn-icon"> </span> </a>
+            </li>
+            <li>
+                <a href="#"  class="pop-top" data-toggle="popover" title="Grades:" data-content="все очень плохо"> <span class='glyphicon glyphicon-font ibtn btn-icon'> </span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pop-top" data-toggle="popover" title="Homework:" data-content="vam pizda">
+                    <span class='glyphicon glyphicon-book ibtn btn-icon'> </span>
+                </a>
+            </li>
+        </ul>
+    </th>
+    <th class="success">
+        Physics
+        <ul class="list-inline">
+            <li>
+                <a href="#"> <span class='glyphicon glyphicon-trash ibtn btn-icon'> </span> </a>
+            </li>
+            <li>
+                <a href="#"> <span class="glyphicon glyphicon-wrench ibtn btn-icon"> </span> </a>
+            </li>
+            <li>
+                <a href="#"  class="pop-top" data-toggle="popover" title="Grades:" data-content="все очень плохо"> <span class='glyphicon glyphicon-font ibtn btn-icon'> </span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pop-top" data-toggle="popover" title="Homework:" data-content="vam pizda">
+                    <span class='glyphicon glyphicon-book ibtn btn-icon'> </span>
+                </a>
+            </li>
+        </ul>
+    </th>
+    <th>
+        <a href="#"> <span class='glyphicon glyphicon-plus ibtn btn-lg'> </span> </a>
+    </th>
+</tr>
+
+<tr>
+    <th> 9.55 </th>
+    <th class="default">
+        Chemistry
+        <ul class="list-inline">
+            <li>
+                <a href="#"  class="pop-top" data-toggle="popover" title="Grades:" data-content="все очень плохо"> <span class='glyphicon glyphicon-font btn-icon'> </span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pop-top" data-toggle="popover" title="Homework:" data-content="vam pizda">
+                    <span class='glyphicon glyphicon-book btn-icon'> </span>
+                </a>
+            </li>
+        </ul>
+    </th>
+    <th class="primary">
+        Biology
+        <ul class="list-inline">
+            <li>
+                <a href="#"  class="pop-top" data-toggle="popover" title="Grades:" data-content="все очень плохо"> <span class='glyphicon glyphicon-font btn-icon'> </span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pop-top" data-toggle="popover" title="Homework:" data-content="vam pizda">
+                    <span class='glyphicon glyphicon-book btn-icon'> </span>
+                </a>
+            </li>
+        </ul>
+    </th>
+    <th class="success">
+        Physics
+        <ul class="list-inline">
+            <li>
+                <a href="#"  class="pop-top" data-toggle="popover" title="Grades:" data-content="все очень плохо"> <span class='glyphicon glyphicon-font btn-icon'> </span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pop-top" data-toggle="popover" title="Homework:" data-content="vam pizda">
+                    <span class='glyphicon glyphicon-book btn-icon'> </span>
+                </a>
+            </li>
+        </ul>
+    </th>
+    <th> Thursday </th>
+    <th class="danger">
+        <a href="#" class="btn pop-right" data-toggle="popover" title="Popover title" data-content="Default popover">Popover
+        </a>
+    </th>
+</tr>
+<tr>
+    <th> 10.50 </th>
+    <th class="danger">
+        Chemistry
+        <ul class="list-inline">
+            <li>
+                <a  data-toggle="modal" data-target="#grades">
+                    <span class='glyphicon glyphicon-font ibtn btn-icon'> </span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pop-top" data-toggle="popover" title="Homework:" data-content="
+                                        <textarea cols='30' rows='6' >  vam pizda pr. #1 </textarea>
+                                        <div class='for-pop'>
+                                        <input class='btn btn-success btn-xs col-xs-4' type='submit' name='submit' value='Save'>
+                                        <p class='text-danger text-center'>Error!!!</p>
+                                        </div>
+                                        ">
+                    <span class='glyphicon glyphicon-book ibtn btn-icon'> </span>
+                </a>
+            </li>
+        </ul>
+    </th>
+    <th class="active"> English</th>
+    <th class="danger"> Physics </th>
+    <th class="info"> Chemistry </th>
+    <th>            </th>
+
+</tr>
+<tr>
+    <th> 10.50 </th>
+    <th class="success"> Math </th>
+    <th class="active"> English</th>
+    <th class="danger"> Physics </th>
+    <th class="info"> Chemistry </th>
+    <th class="danger"> Physics </th>
+</tr>
+<tr>
+    <th> 10.50 </th>
+    <th class="info"> Math </th>
+    <th class="primary"> English</th>
+    <th class="danger"> Physics </th>
+    <th class="success"> Chemistry </th>
+    <th> </th>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div><!--container-->
+</div><!--/jumbotrom-->
+</div><!--/span-->
+</div><!--/row-->
+
+
+    <hr>
+    <footer> <h4> <small>
+        &copy; A7B36USI Company: <span class="muted">@@lebedant, @@silinnik, @@kuchuali </span>
+        2013
+    </small> </h4>
+
+    </footer>
+
+</div><!--/.fluid-container-->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $(".pop-top").popover({
+            placement : 'top',
+            html:true
+        });
+
+        $(".pop-right").popover({
+            placement : 'right'
+        });
+        $(".pop-bottom").popover({
+            placement : 'bottom'
+        });
+        $(".pop-left").popover({
+            placement : 'left'
+        });
+
+
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    &lt;!&ndash; Bootstrap core CSS &ndash;&gt;
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    &lt;!&ndash; Bootstrap theme &ndash;&gt;
+    &lt;!&ndash; <link href="../../css/bootstrap-theme.min.css" rel="stylesheet"> &ndash;&gt;
+
+    &lt;!&ndash; Custom styles for this template &ndash;&gt;
+    <link href="/css/theme.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/ajax/ajax_modal.js"></script>
+    <script src="/js/ajax/ajax_forms.js"></script>
+    <script type="text/javascript" src="@controllers.routes.SystemController.javascriptRoutes"></script>
+</head>
+<body>
+
+&lt;!&ndash; Button trigger modal &ndash;&gt;
+<button class="btn btn-primary btn-lg" id="show-modal-button">
+    Launch demo modal
+</button>
+
+Hello
+
+<script>
+
+
+
+
+    $('#show-modal-button').on('click',bong);
+
+    function bong(){
+
+
+        jsRoutes.controllers.MainController.openModalWindow().ajax().success(function(data){
+          showModal(data)
+        })
+
+    }
+
+
+
+</script>
+
+
+
+
+</body>
+</html>-->

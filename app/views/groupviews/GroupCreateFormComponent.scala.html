@@ -11,15 +11,38 @@
     </ul>
 }
 
-@form(action = controllers.routes.GroupController.processNewGroup,'class->"Form1") {
-
+@form(action = controllers.routes.GroupController.processNewGroup,'id->"creategroupform") {
+   <div class="row">
+     <div class="col-xs-4">
     @inputText(
-    groupForm("name"),
-    'size -> 16  ,
-    '_label -> "Group Name:",
-    '_showConstraints -> false
+        groupForm("name"),
+        '_label -> "Group name:",
+        'size -> 16  ,
+        'placeholder -> "Group name",
+        'class -> "form-control",
+        '_showConstraints -> false
+    )
+     </div>
+   </div>
+
+@inputText(
+        groupForm("indices"),
+        '_label -> "",
+        'type -> "hidden",
+        '_showConstraints -> false
     )
 
-    <input type="submit" value="Create" id="btn-submit">
 
+
+    <script>
+    $('#creategroupform').submit(function(){
+        indices = ""
+        $('input[name=user_id]').each(function(i,obj){
+            indices+=$(obj).val()+","
+        })
+
+        $('input[name=indices]').val(indices)
+    })
+
+    </script>
 }

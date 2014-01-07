@@ -1,0 +1,28 @@
+@(item : MTimetableEntry)
+@import models._
+@import java.util.Calendar
+
+<th class="default timetable-entry" data-timetable-id="@item.getId">
+    <strong>@item.getSubject.getName</strong> <br>
+    @item.getTeacher.getFirstName @item.getTeacher.getLastName
+
+
+    <ul class="list-inline">
+        <li>
+            <a href="#"> <span class='glyphicon glyphicon-trash ibtn btn-icon'> </span> </a>
+        </li>
+        <li>
+            <a href="#"> <span class="glyphicon glyphicon-wrench ibtn btn-icon"> </span> </a>
+        </li>
+        <li>
+            <a href="#"  class="timetable-grades@* pop-top" data-toggle="popover*@" title="Grades:" data-content="все очень плохо"> <span class='glyphicon glyphicon-font ibtn btn-icon'> </span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="pop-top" data-toggle="popover" title="Homework:" data-content="vam pizda">
+                <span class='glyphicon glyphicon-book ibtn btn-icon'> </span>
+            </a>
+        </li>
+    </ul>
+</th>
+

@@ -945,6 +945,9 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
         .one($.support.transition.end, $.proxy(this.hideModal, this))
         .emulateTransitionEnd(300) :
       this.hideModal()
+
+      //TODO : try to kill the window here
+
   }
 
   Modal.prototype.enforceFocus = function () {

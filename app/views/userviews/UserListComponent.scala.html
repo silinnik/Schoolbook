@@ -1,0 +1,23 @@
+@(userSet : Set[_ <: User],selectable : Boolean,editable : Boolean)(implicit request : play.api.mvc.Request[Any])
+@import models.User
+
+
+<div class="table scrollable">
+<table id="userlist" class="table table-hover">
+    <thead>
+    <tr>
+        @if(selectable){  <th> <span class="glyphicon glyphicon-check"></span> </th> }
+        <th> ID </th>
+        <th> Last Name </th>
+        <th> First Name </th>
+        <th> Username </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    @for(user <- userSet){
+         @UserListItemComponent(user,selectable,editable)
+    }
+    </tbody>
+</table>
+</div>

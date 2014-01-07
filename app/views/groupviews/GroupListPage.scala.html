@@ -8,21 +8,45 @@ routes.javascript.GroupController.processRemoveGroups
 
 
 @base("Groups list"){
-    @GroupListComponent(grouplist,editable)
-       @if(editable){ <a href="@controllers.routes.GroupController.requestNewGroup">Create group</a> }
-    <input id="coolbutton" type="button" value="Remove">
+
+    <div class="row"><!--up row-->
+        <div class="col-md-8">
+            <h2>Group list</h2>
+        </div>
+        <div class="col-md-4">
+            <a href="@controllers.routes.GroupController.requestNewGroup">
+                <button type="button" class="btn btn-default myRight">
+                    <span class="glyphicon glyphicon-file"> Create </span> </button>
+            </a>
+        </div>
+    </div> <!--up row-->
+
+
+        @GroupListComponent(grouplist,editable)
+           @if(editable){ <div class="row">
+        <div class="container">
+            <form action="" method="post">
+                <input id="coolbutton" type="button" class="btn btn-danger " value="Remove">
+            </form>
+        </div>
+    </div>}
+
 
     <script>
 
-
-        var indices = "";
-
         $("#coolbutton").bind('click', function() {
+            indices = "";
             $('input:checked').each(function(i, obj) {
              indices+=$(obj).val()+","
             });
 
-            window.location.href = jsroutes.controllers.GroupController.processRemoveGroups(indices);
+            jsroutes.controllers.GroupController.processRemoveGroups(indices).ajax({
+                method: "POST",
+                success: function(data) {
+                    document.location = "/GroupList"
+                }
+            })
+
 
         });
 

@@ -1,0 +1,43 @@
+@()(implicit request: play.api.mvc.Request[Any])
+@import helper._
+
+
+<div class="col-md-3">
+
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Personal items</div>
+        <div class="list-group">
+            <a href="admin.html" class="list-group-item">
+                <span class="glyphicon glyphicon-wrench"> </span>
+                Profile
+            </a>
+            <a href="#" class="list-group-item">
+                <span class="glyphicon glyphicon-envelope"> </span>
+                Messages <span class="badge">14</span> </a>
+            <a href="#" class="list-group-item">
+                <span class="glyphicon glyphicon-bullhorn"> </span>
+                My events</a>
+        </div><!--/.list-group -->
+    </div> <!--/.panel -->
+    @request.session.get("role") match {
+        case Some("H") => {
+            <div class="panel panel-default">
+                <div class="panel-heading">Possibility</div>
+                <div class="list-group">
+                    <a href="@controllers.routes.UserController.viewUserList" class="list-group-item">User admanistration</a>
+                    <a href="@controllers.routes.GroupController.viewGroupList" class="list-group-item">Group management</a>
+                    <a href="timetable.html" class="list-group-item ">Timetable management</a>
+                    <a href="#" class="list-group-item">Event management</a>
+                    <a href="#" class="list-group-item">Subjects management</a>
+                </div><!--/.list-group -->
+            </div> <!--/.panel -->
+        }
+    case Some("S") => { }
+    case Some("T") => {}
+    case _   => {}
+    }
+
+
+</div><!--/span-->

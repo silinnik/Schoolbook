@@ -1,0 +1,33 @@
+@(testForm : play.api.data.Form[MainController.TestData])
+@import helper._
+@import controllers._
+@import play.api.data.Form
+
+
+
+@form(action = controllers.routes.GroupController.processEditGroup,'class->"Form1") {
+
+@if(testForm.hasGlobalErrors) {
+<ul>
+    @testForm.errors.foreach { error =>
+    <li>error.message</li>
+    }
+</ul>
+}
+
+@inputText(
+testForm("number"),
+'size -> 16  ,
+'_label -> "Number:",
+'_showConstraints -> false
+)
+
+@inputText(
+testForm("msg"),
+'_label -> "Message:",
+'_showConstraints -> false
+)
+
+<input type="submit" value="Create" class="btn-submit" data-ajax-route="jsRoutes.controllers.MainController.ajax_submitForm()">
+
+}

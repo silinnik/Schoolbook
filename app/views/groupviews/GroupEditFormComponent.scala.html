@@ -16,12 +16,18 @@
     @inputText(
         groupForm("name"),
         'size -> 16  ,
-        '_label -> "Login",
+        '_label -> "Group name:",
         '_showConstraints -> false
     )
 
     @inputText(
         groupForm("id"),
+        'type -> "hidden",
+        '_showConstraints -> false
+    )
+
+    @inputText(
+        groupForm("indices"),
         'type -> "hidden",
         '_showConstraints -> false
     )

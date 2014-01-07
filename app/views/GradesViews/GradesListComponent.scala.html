@@ -1,0 +1,90 @@
+@(pairs: Set[(MStudent, Option[MGrade])])
+
+<table class="table grades-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+
+            <th>Grade</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @for(pair <- pairs) {
+            <tr data-student-id="@pair._1.getId">
+            <th>@pair._1.getFirstName @pair._1.getLastName</th>
+            <th>
+            <select class="students-grade">
+            @pair._2 match {
+                case Some(grade) => {
+                    <option value="0">- <option>
+
+                    @grade.getGrade_value
+                    @for(i <- 1 to 5) {
+                        @if(i == grade.getGrade_value) {
+                            <option selected value="@i">@i </option>
+                        } else {
+                            <option value="@i" >@i </option>
+                        }
+                    }
+                    }
+                case _ => {
+                    <option selected value="0" >- </option>
+                    @for(i <- 1 to 5) {
+                        <option value="@i">@i </option> }
+
+                    }
+            }
+
+            </select>
+            </th>
+            </tr>        }
+
+    </tbody>
+
+</table>
+<button class="btn-save-grades btn btn-info" data->Save</button>
+
+
+<script type="text/javascript" src="../js/json2.js"> </script>
+
+<script>
+
+
+
+        $(document.body).on('click','.btn-save-grades',function(e){
+                       e.preventDefault()
+                       $this = $(this)
+        /*---------------------------------------------------------------------------*/
+                       $rows = $this.siblings('.grades-table' ).first( ).find('tr[data-student-id]' )
+
+
+                        /* DECLARATION */
+                        jsonObject = {};
+                        var array = [];
+
+                        $.each($rows,function(i,o){
+
+                            studentId = $(o).attr('data-student-id');
+                            studentGrade  = $(o).find ('.students-grade' ).first().val();
+
+                            /* CONSTRUCTION */
+                            var subArray = [["id",studentId],["grade", studentGrade]];
+
+                            array.push(subArray);
+
+                        })
+
+                        jsRoutes.controllers.TimetableController.ajax_TimetableGradesSubmit( ).ajax({
+                            /*INSERTION*/
+                            data: JSON.stringify(array)
+                        } ).success(function(data){
+
+                        })
+        /*---------------------------------------------------------------------------*/
+
+      })
+
+</script>

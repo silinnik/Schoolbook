@@ -4,38 +4,45 @@
 
 # User management
 
-GET     /AddUser                    controllers.UserController.requestNewUser()
-POST    /AddUser                    controllers.UserController.processNewUser()
+GET         /AddUser                                                                  controllers.UserController.requestNewUser()
+POST        /AddUser                                                                  controllers.UserController.processNewUser()
 
-GET     /EditUser/:userId           controllers.UserController.requestEditUser(userId : Int)
-POST    /EditUser/                  controllers.UserController.processEditUser()
+GET         /EditUser/:userId                                                         controllers.UserController.requestEditUser(userId : Int)
+POST        /EditUser/                                                                controllers.UserController.processEditUser()
 
-GET     /DeleteUser/:userId         controllers.UserController.removeUser(userId:Int)
+GET         /DeleteUser/:userId                                                       controllers.UserController.removeUser(userId:Int)
 
-GET     /UserList                   controllers.UserController.viewUserList()
+GET         /UserList                                                                 controllers.UserController.viewUserList()
 
 #GET     /Group/*id                  controllers.GroupController.viewGroup(id:Int)
 
 # Login services
-GET     /Login                      controllers.LoginController.requestLogin()
-GET     /Logout                     controllers.LoginController.logout()
-POST    /Login                      controllers.LoginController.processLogin()
+GET         /Login                                                                    controllers.LoginController.requestLogin()
+GET         /Logout                                                                   controllers.LoginController.logout()
+POST        /Login                                                                    controllers.LoginController.processLogin()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
-GET     /css/*file                  controllers.Assets.at(path="/public/css", file)
-GET     /js/*file                   controllers.Assets.at(path="/public/js", file)
-GET     /webjars/*file              controllers.WebJarAssets.at(file)
+GET         /assets/*file                                                             controllers.Assets.at(path="/public", file)
+GET         /css/*file                                                                controllers.Assets.at(path="/public/css", file)
+GET         /js/*file                                                                 controllers.Assets.at(path="/public/js", file)
+GET         /webjars/*file                                                            controllers.WebJarAssets.at(file)
 
-GET     /                           controllers.UserController.todo()
 #POST    /RequestAjax                controllers.AjaxController.processAjaxMessage(msg : String)
 #GET     /Ajax                       controllers.AjaxController.show()
-GET     /Timetable/:group       controllers.TimetableController.showTimetableForGroup(group:Int)
-GET     /GroupList                  controllers.GroupController.viewGroupList
-GET     /CreateGroup                controllers.GroupController.requestNewGroup
-GET     /EditGroup/:group           controllers.GroupController.requestEditGroup(group: Int)
-POST    /CreateGroup                controllers.GroupController.processNewGroup
-POST    /EditGroup                  controllers.GroupController.processEditGroup
-GET     /Init                       controllers.SystemController.InitializeSystem()
-GET     /RemoveGroups               controllers.GroupController.processRemoveGroups(indices:String)
-GET     /SysAttachJS               controllers.SystemController.javascriptRoutes
+GET         /Timetable/:group                                                         controllers.TimetableController.showTimetableForGroup(group:Int)
+GET         /GroupList                                                                controllers.GroupController.viewGroupList
+GET         /CreateGroup                                                              controllers.GroupController.requestNewGroup
+GET         /EditGroup/:group                                                         controllers.GroupController.requestEditGroup(group: Int)
+POST        /CreateGroup                                                              controllers.GroupController.processNewGroup
+POST        /EditGroup                                                                controllers.GroupController.processEditGroup
+GET         /Init                                                                     controllers.SystemController.InitializeSystem()
+POST        /RemoveGroups                                                             controllers.GroupController.processRemoveGroups(indices:String)
+GET         /SysAttachJS                                                              controllers.SystemController.javascriptRoutes
+GET         /                                                                         controllers.MainController.viewMainPage()
+GET         /Playground_Ajax                                                          controllers.MainController.openModalWindow()
+POST        /ajax/submitForm                                                          controllers.MainController.ajax_submitForm()
+POST        /fallback/GroupTimetableFormSubmit                                        controllers.TimetableController.fallback_GroupTimetableEntryFormSubmit()
+GET         /ajax/GroupTimetableFormRequest/:year/:week/:day/:number/:groupId/        controllers.TimetableController.ajax_GroupTimetableEntryFormRequest(year:Int,week:Int,day:Int,number:Int,groupId:Int)
+GET         /ajax/TimetableGradesRequest/:timetable_id                                controllers.TimetableController.ajax_TimetableGradesRequest(timetable_id: Int)
+POST        /ajax/GroupTimetableFormSubmit/                                           controllers.TimetableController.ajax_GroupTimetableEntryFormSubmit()
+POST        /ajax/TimetableGradesSubmit/                                              controllers.TimetableController.ajax_TimetableGradesSubmit()

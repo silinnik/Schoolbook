@@ -13,7 +13,7 @@
     }
 
 
-    @form(action = controllers.routes.UserController.processNewUser,'class->"Form1") {
+    @form(action = controllers.routes.UserController.processNewUser,'class->"form-control") {
 
                 @inputText(
                     userForm("login"),
@@ -41,6 +41,7 @@
                     ,'_label -> "Confirm password",
                     '_showConstraints -> false
                 )
+
 
                 @inputRadioGroup(
                     userForm("role"),

@@ -1,5 +1,9 @@
 
 import com.avaje.ebean.Ebean;
+import models.MStudent;
+import models.MUser;
+import models.repositories.MUsersRepository;
+import models.repositories.Repository;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,12 +23,22 @@ public class UserRepositoryTest extends WithApplication {
 
         start(fakeApplication(inMemoryDatabase()));
 
-         Ebean.save((List) Yaml.load("SchoolTest.yml"));
+        testdata.TestDataProvider.InitializeDatabaseWithDefaultValues();
+
+
+
+        /// Ebean.save((List) Yaml.load("SchoolTest.yml"));
+
+
+
+
+
 
     }
 
     @Test
     public void createUsers(){
+
 
     }
 

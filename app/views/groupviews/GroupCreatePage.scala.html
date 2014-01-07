@@ -1,6 +1,31 @@
-@(form : play.api.data.Form[Group])(implicit request : play.api.mvc.Request[Any])
+@(form : play.api.data.Form[Group],allowedStudents:Set[Student])(implicit request : play.api.mvc.Request[Any])
 @import models._
 
+
 @base("Create group"){
+
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Create group</h2>
+            </div>
+            <div class="col-md-4 col-md-offset-4">
+                <a href="@controllers.routes.GroupController.viewGroupList">
+                    <button type="button" class="btn btn-default myRight">
+                        <span class="glyphicon glyphicon-list"> All groups </button>
+                </a>
+            </div>
+        </div><!--row-->
+
+
+
         @GroupCreateFormComponent(form)
+        @userviews.UserListComponent(allowedStudents,true,false)
+
+
+<div class="row">
+    <div class="container">
+        <input type="button" class="btn btn-success " value="Create">
+    </div>
+</div>
+
 }

@@ -3,7 +3,7 @@
 @import controllers.formsdata.UserData._
 
 @base("Edit User"){
-
+ <div class="col-md-8">
     @if(userForm.hasGlobalErrors) {
         <ul>
             @userForm.globalErrors.foreach { error =>
@@ -12,33 +12,36 @@
         </ul>
         }
 
-        @form(action = controllers.routes.UserController.processEditUser,'class->"Form1") {
+        @form(action = controllers.routes.UserController.processEditUser,'role->"form",'class->"form") {
 
             @inputText(
                 userForm("login"),
                 'size -> 16  ,
+                'class -> "form-control",
                 '_label -> "Login",
                 'readonly -> "readonly",
                 '_showConstraints -> false
             )
             @inputText(
-                userForm("name")
-                ,'_label -> "Name",
+                userForm("name"),
+                'class -> "form-control",
+                '_label -> "Name",
                 '_showConstraints -> false
             )
             @inputText(
                 userForm("surname")
-                ,'_label -> "Surname",
+                ,'class -> "form-control",
+                '_label -> "Surname",
                 '_showConstraints -> false
             )
             @inputPassword(
                 userForm("password.main")
-                ,'_label -> "New Password",
+                ,'class -> "form-control",'_label -> "New Password",
                 '_showConstraints -> false
             )
             @inputPassword(
                 userForm("password.confirm")
-                ,'_label -> "Confirm Password",
+                ,'class -> "form-control",'_label -> "Confirm Password",
                 '_showConstraints -> false
             )
 
@@ -50,7 +53,8 @@
             )
 
             @inputText(
-                userForm("id"),
+                userForm("id"),'class -> "form-control",
+                '_label -> " ",
                 'type -> "hidden",
                 '_showConstraints -> false
             )
@@ -58,5 +62,5 @@
         <input type="submit" value="Create" id="btn-submit">
 
     }
-
+ </div>
 }

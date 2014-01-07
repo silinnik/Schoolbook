@@ -1,4 +1,7 @@
 package models;
+import models.repositories.GroupRepository;
+import models.repositories.SubjectRepository;
+import models.repositories.UserRepository;
 import play.db.ebean.Model;
 
 import java.io.Serializable;
@@ -49,20 +52,20 @@ public class TimetableEntry extends Model {
     /**
      * Group which visits this lesson
      */
-	@ManyToOne
-	private Group group;
+    @Column
+	private int group_id;
 
     /**
      * Teacher
      */
-	@ManyToOne
-	private Teacher teacher;
+    @Column
+	private int teacher;
 
     /**
      * Subject that is taught on this lesson
      */
-	@ManyToOne
-	private Subject subject;
+    @Column
+	private int subject;
 
 
     /**
@@ -73,11 +76,11 @@ public class TimetableEntry extends Model {
      * @param teacher Teacher that teaches this lesson
      * @param subject Subject that is taught on this lesson
      */
-    public TimetableEntry(int time, int number, Group group, Teacher teacher,
-                          Subject subject) {
+    public TimetableEntry(int time, int number, int group, int teacher,
+                          int subject) {
         super();
         this.number = number;
-        this.group = group;
+        this.group_id = group;
         this.teacher = teacher;
         this.subject = subject;
     }
@@ -101,26 +104,26 @@ public class TimetableEntry extends Model {
 	}
 
 	public Group getGroup() {
-		return group;
+		return GroupRepository.byId(group_id).get();
 	}
 
-	public void setGroup(Group group) {
-		this.group = group;
+	public void setGroup(int group) {
+		this.group_id = group;
 	}
 
 	public Teacher getTeacher() {
-		return teacher;
+		return UserRepository.findTeacherById(teacher).get();
 	}
 
-	public void setTeacher(Teacher teacher) {
+	public void setTeacher(int teacher) {
 		this.teacher = teacher;
 	}
 
 	public Subject getSubject() {
-		return subject;
+		return SubjectRepository.byId(subject).get();
 	}
 
-	public void setSubject(Subject subject) {
+	public void setSubject(int subject) {
 		this.subject = subject;
 	}
 

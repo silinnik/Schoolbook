@@ -1,0 +1,71 @@
+@(tForm: play.api.data.Form[MTimetableEntry])
+@import models.repositories.MSubjectsRepository
+@import helper._
+@import helper.twitterBootstrap._
+@import models.repositories.MUsersRepository
+@if(tForm.hasGlobalErrors) {
+    <ul>
+
+    @tForm.globalErrors.foreach { error =>
+        <li>error.message</li>
+    }
+
+    </ul>
+}
+@defining(MUsersRepository.getAllTeachers) { teachers =>
+    @defining(MSubjectsRepository.all()) { subjects =>
+        @form(action = controllers.routes.TimetableController.fallback_GroupTimetableEntryFormSubmit, 'id -> "group_timetable_entry_form") {
+            <div class="hide">
+            @inputText(
+                tForm("year"),
+                '_showConstraints -> false,
+                'type->"hidden"
+            )
+
+            @inputText(
+                tForm("week"),
+                '_showConstraints -> false,
+                'type->"hidden"
+            )
+
+
+            @inputText(
+                tForm("day"),
+                 '_showConstraints -> false,
+                 'type->"hidden"
+            )
+
+
+            @inputText(
+                tForm("number"),
+                '_showConstraints -> false,
+                'type->"hidden"
+            )
+
+            @inputText(
+                tForm("groupid"),
+                '_showConstraints -> false,
+                'type->"hidden"
+            )
+            </div>
+            <select name="teacherid">
+            @for(teacher <- teachers) {
+                <option value="@teacher.getId">@teacher.getFirstName @teacher.getLastName</option>
+            }
+            </select>
+
+            <select name="subjectid">
+            @for(subject <- subjects) {
+                <option value="@subject.getId">@subject.getName </option>
+            }
+            </select>
+
+
+            <input type="submit" value="Create" id="btn-submit" data-ajax-route="jsRoutes.controllers.TimetableController.ajax_GroupTimetableEntryFormSubmit()">
+
+
+        }
+    }
+}
+
+

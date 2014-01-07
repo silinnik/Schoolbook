@@ -1,0 +1,10 @@
+@(user : User,selectable:Boolean,editable : Boolean)
+@import models.User
+
+<tr>
+    @if(selectable){ <th><input name="user_id" value="@user.getUser_id" type="checkbox"/></th> }
+    <th> @user.getUser_id </th>
+    <th> @user.getSurname </th>
+    <th> @user.getName </th>
+    <th> @user.getLogin </th>
+</tr>

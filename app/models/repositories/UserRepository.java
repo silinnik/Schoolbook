@@ -91,7 +91,7 @@ public class UserRepository {
      * @return Optional values which may contain the user with given id
      */
     public static Option<User> findById(Integer userId){
-        return packToOption(Ebean.find(User.class).where().idEq(userId).findUnique().asRoleUser());
+        return packToOption(Ebean.find(User.class).where().idEq(userId).findUnique());
     }
 
 
@@ -106,7 +106,7 @@ public class UserRepository {
      */
     public static Option<User> findByLogin(String userLogin){
 
-        return packToOption(Ebean.find(User.class).where().eq("login", userLogin).findUnique().asRoleUser());
+        return packToOption(Ebean.find(User.class).where().eq("login", userLogin).findUnique());
 
     }
 

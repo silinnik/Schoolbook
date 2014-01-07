@@ -2,39 +2,42 @@ package testdata
 
 import models._
 
+import repositories.MUsersRepository
 import utils.DateFactory.Date
+import java.util.Calendar
+
 /**
  * Date: 12/15/13
-*/
+ */
 object TestDataProvider {
 
   def InitializeDatabaseWithDefaultValues() {
     val password = "$2a$10$gB7PcgNsO9mvFd1YHHCifOTj.xMt9qKNKzrwRaOakiLbjop3d3m0y"
 
     //READY
-    val student1 = new Student("akeed","Alice","Keeden",password)
-    val student2 = new Student("mcern","Marketa","Cerna",password)
-    val student3 = new Student("rkita","Ray","Kitao",password)
-    val student4 = new Student("mbelm","Michael","Belman",password)
-    val student5 = new Student("kmora","Katka","Moravcova",password)
-    val student6 = new Student("fstei","Franz","Steiner",password)
-    val student7 = new Student("mnova","Marek","Novak",password)
-    val student8 = new Student("lgaul","Loui","Gaulle",password)
-    val student9 = new Student("xzhao","Xin","Zhao",password)
-    val student10 = new Student("lmati","Laura","Matias",password)
-    val student11 = new Student("pphil","Peter","Phillips",password)
-    val student12 = new Student("njenn","Natalie","Jennice",password)
-    val student13 = new Student("dmale","Dmitry","Maleev",password)
-    val student14 = new Student("smoja","Saida","Mojara",password)
-    val student15 = new Student("dholl","Daniel","Hollway",password)
+    val student1 = MUsersRepository.produceNewUser("akeed", "Alice", "Keeden", password, "STUDENT").asInstanceOf[MStudent]
+    val student2 = MUsersRepository.produceNewUser("mcern", "Marketa", "Cerna", password, "STUDENT").asInstanceOf[MStudent]
+    val student3 = MUsersRepository.produceNewUser("rkita", "Ray", "Kitao", password, "STUDENT").asInstanceOf[MStudent]
+    val student4 = MUsersRepository.produceNewUser("mbelm", "Michael", "Belman", password, "STUDENT").asInstanceOf[MStudent]
+    val student5 = MUsersRepository.produceNewUser("kmora", "Katka", "Moravcova", password, "STUDENT").asInstanceOf[MStudent]
+    val student6 = MUsersRepository.produceNewUser("fstei", "Franz", "Steiner", password, "STUDENT").asInstanceOf[MStudent]
+    val student7 = MUsersRepository.produceNewUser("mnova", "Marek", "Novak", password, "STUDENT").asInstanceOf[MStudent]
+    val student8 = MUsersRepository.produceNewUser("lgaul", "Loui", "Gaulle", password, "STUDENT").asInstanceOf[MStudent]
+    val student9 = MUsersRepository.produceNewUser("xzhao", "Xin", "Zhao", password, "STUDENT").asInstanceOf[MStudent]
+    val student10 = MUsersRepository.produceNewUser("lmati", "Laura", "Matias", password, "STUDENT").asInstanceOf[MStudent]
+    val student11 = MUsersRepository.produceNewUser("pphil", "Peter", "Phillips", password, "STUDENT").asInstanceOf[MStudent]
+    val student12 = MUsersRepository.produceNewUser("njenn", "Natalie", "Jennice", password, "STUDENT").asInstanceOf[MStudent]
+    val student13 = MUsersRepository.produceNewUser("dmale", "Dmitry", "Maleev", password, "STUDENT").asInstanceOf[MStudent]
+    val student14 = MUsersRepository.produceNewUser("smoja", "Saida", "Mojara", password, "STUDENT").asInstanceOf[MStudent]
+    val student15 = MUsersRepository.produceNewUser("dholl", "Daniel", "Hollway", password, "STUDENT").asInstanceOf[MStudent]
 
-    val headmaster = new Student("silinnik","Nikita","Silin",password)
+    val headmaster = MUsersRepository.produceNewUser("silinnik", "Nikita", "Silin", password, "HEADMASTER")
 
     //READY
-    val subjectMath = new Subject("Math")
-    val subjectPhysics = new Subject("Physics")
-    val subjectChemistry = new Subject("Chemistry")
-    val subjectEnglish = new Subject("English")
+    val subjectMath = new MSubject("Math")
+    val subjectPhysics = new MSubject("Physics")
+    val subjectChemistry = new MSubject("Chemistry")
+    val subjectEnglish = new MSubject("English")
 
     subjectMath.save()
     subjectPhysics.save()
@@ -42,20 +45,23 @@ object TestDataProvider {
     subjectEnglish.save()
 
     //READY
-    val teacher1 = new Teacher("jcrai","Jennifer","Craig",password)
-    val teacher2 = new Teacher("mhoop","Matias","Hoopen",password)
-    val teacher3 = new Teacher("wwhit","Walter","White",password)
-    val teacher4 = new Teacher("khalu","Katarina","Haluskova",password)
+    val teacher1 = MUsersRepository.produceNewUser("jcrai", "Jennifer", "Craig", password, "TEACHER").asInstanceOf[MTeacher]
+    val teacher2 = MUsersRepository.produceNewUser("mhoop", "Matias", "Hoopen", password, "TEACHER").asInstanceOf[MTeacher]
+    val teacher3 = MUsersRepository.produceNewUser("wwhit", "Walter", "White", password, "TEACHER").asInstanceOf[MTeacher]
+    val teacher4 = MUsersRepository.produceNewUser("khalu", "Katarina", "Haluskova", password, "TEACHER").asInstanceOf[MTeacher]
 
     teacher1.save()
     teacher2.save()
     teacher3.save()
     teacher4.save()
 
+    val Headmaster = MUsersRepository.produceNewUser("headmaster", "Johnny", "Walker", password, "HEADMASTER")
+    Headmaster.save()
+
     //READY
-    val groupA = new Group(null,"A",null)
-    val groupB = new Group(null,"B",null)
-    val groupC = new Group(null,"C",null)
+    val groupA = new MGroup("A")
+    val groupB = new MGroup("B")
+    val groupC = new MGroup("C")
 
     groupA.save()
     groupB.save()
@@ -67,17 +73,23 @@ object TestDataProvider {
     groupA.addStudent(student4)
     groupA.addStudent(student5)
 
+    groupA.update()
+
     groupB.addStudent(student6)
     groupB.addStudent(student7)
     groupB.addStudent(student8)
     groupB.addStudent(student9)
     groupB.addStudent(student10)
 
+    groupB.update()
+
     groupC.addStudent(student11)
     groupC.addStudent(student12)
     groupC.addStudent(student13)
     groupC.addStudent(student14)
     groupC.addStudent(student15)
+
+    groupC.update()
 
     student1.save()
     student2.save()
@@ -97,19 +109,46 @@ object TestDataProvider {
 
 
 
-    val TimeentryMath1 = new TimetableEntry(0,1,groupA,teacher4,subjectMath)
-    val TimeentryMath2 = new TimetableEntry(1,1,groupB,teacher4,subjectMath)
-    val TimeentryMath3 = new TimetableEntry(0,3,groupC,teacher4,subjectMath)
-    val TimeentryPhys1 = new TimetableEntry(2,4,groupA,teacher1,subjectPhysics)
-    val TimeentryPhys2 = new TimetableEntry(4,6,groupB,teacher1,subjectPhysics)
-    val TimeentryPhys3 = new TimetableEntry(1,4,groupC,teacher1,subjectPhysics)
-    val TimeentryChem1 = new TimetableEntry(2,1,groupA,teacher3,subjectChemistry)
-    val TimeentryChem2 = new TimetableEntry(3,2,groupB,teacher3,subjectChemistry)
-    val TimeentryChem3 = new TimetableEntry(1,2,groupC,teacher3,subjectChemistry)
-    val TimeentryEngl1 = new TimetableEntry(0,2,groupA,teacher2,subjectEnglish)
-    val TimeentryEngl2 = new TimetableEntry(2,3,groupB,teacher2,subjectEnglish)
-    val TimeentryEngl3 = new TimetableEntry(4,5,groupC,teacher2,subjectEnglish)
+    val TimeentryMath1 = new MTimetableEntry(2013, 36, Calendar.MONDAY, 1, groupA, teacher4, subjectMath)
+    val TimeentryPhys1 = new MTimetableEntry(2013, 36, Calendar.MONDAY, 2, groupA, teacher1, subjectPhysics)
+    val TimeentryChem1 = new MTimetableEntry(2013, 36, Calendar.MONDAY, 3, groupA, teacher3, subjectChemistry)
+    val TimeentryEngl1 = new MTimetableEntry(2013, 36, Calendar.MONDAY, 4, groupA, teacher2, subjectEnglish)
+    val TimeentryMath2 = new MTimetableEntry(2013, 36, Calendar.MONDAY, 2, groupB, teacher4, subjectMath)
+    val TimeentryPhys2 = new MTimetableEntry(2013, 36, Calendar.MONDAY, 1, groupB, teacher1, subjectPhysics)
+    val TimeentryChem2 = new MTimetableEntry(2013, 36, Calendar.MONDAY, 3, groupB, teacher3, subjectChemistry)
+    val TimeentryEngl2 = new MTimetableEntry(2013, 36, Calendar.MONDAY, 4, groupB, teacher2, subjectEnglish)
+    val TimeentryMath3 = new MTimetableEntry(2013, 36, Calendar.MONDAY, 3, groupC, teacher4, subjectMath)
+    val TimeentryPhys3 = new MTimetableEntry(2013, 36, Calendar.MONDAY, 2, groupC, teacher1, subjectPhysics)
+    val TimeentryChem3 = new MTimetableEntry(2013, 36, Calendar.MONDAY, 1, groupC, teacher3, subjectChemistry)
+    val TimeentryEngl3 = new MTimetableEntry(2013, 36, Calendar.MONDAY, 4, groupC, teacher2, subjectEnglish)
 
+
+    val TimeentryMath4 = new MTimetableEntry(2013, 36, Calendar.TUESDAY, 1, groupB, teacher4, subjectMath)
+    val TimeentryPhys4 = new MTimetableEntry(2013, 36, Calendar.TUESDAY, 2, groupB, teacher1, subjectPhysics)
+    val TimeentryChem4 = new MTimetableEntry(2013, 36, Calendar.TUESDAY, 3, groupB, teacher3, subjectChemistry)
+    val TimeentryEngl4 = new MTimetableEntry(2013, 36, Calendar.TUESDAY, 4, groupB, teacher2, subjectEnglish)
+    val TimeentryMath5 = new MTimetableEntry(2013, 36, Calendar.TUESDAY, 2, groupC, teacher4, subjectMath)
+    val TimeentryPhys5 = new MTimetableEntry(2013, 36, Calendar.TUESDAY, 1, groupC, teacher1, subjectPhysics)
+    val TimeentryChem5 = new MTimetableEntry(2013, 36, Calendar.TUESDAY, 3, groupC, teacher3, subjectChemistry)
+    val TimeentryEngl5 = new MTimetableEntry(2013, 36, Calendar.TUESDAY, 4, groupC, teacher2, subjectEnglish)
+    val TimeentryMath6 = new MTimetableEntry(2013, 36, Calendar.TUESDAY, 3, groupA, teacher4, subjectMath)
+    val TimeentryPhys6 = new MTimetableEntry(2013, 36, Calendar.TUESDAY, 2, groupA, teacher1, subjectPhysics)
+    val TimeentryChem6 = new MTimetableEntry(2013, 36, Calendar.TUESDAY, 1, groupA, teacher3, subjectChemistry)
+    val TimeentryEngl6 = new MTimetableEntry(2013, 36, Calendar.TUESDAY, 4, groupA, teacher2, subjectEnglish)
+
+
+    val TimeentryMath7 = new MTimetableEntry(2013, 36, Calendar.WEDNESDAY, 1, groupC, teacher4, subjectMath)
+    val TimeentryPhys7 = new MTimetableEntry(2013, 36, Calendar.WEDNESDAY, 2, groupC, teacher1, subjectPhysics)
+    val TimeentryChem7 = new MTimetableEntry(2013, 36, Calendar.WEDNESDAY, 3, groupC, teacher3, subjectChemistry)
+    val TimeentryEngl7 = new MTimetableEntry(2013, 36, Calendar.WEDNESDAY, 4, groupC, teacher2, subjectEnglish)
+    val TimeentryMath8 = new MTimetableEntry(2013, 36, Calendar.WEDNESDAY, 2, groupA, teacher4, subjectMath)
+    val TimeentryPhys8 = new MTimetableEntry(2013, 36, Calendar.WEDNESDAY, 1, groupA, teacher1, subjectPhysics)
+    val TimeentryChem8 = new MTimetableEntry(2013, 36, Calendar.WEDNESDAY, 3, groupA, teacher3, subjectChemistry)
+    val TimeentryEngl8 = new MTimetableEntry(2013, 36, Calendar.WEDNESDAY, 4, groupA, teacher2, subjectEnglish)
+    val TimeentryMath9 = new MTimetableEntry(2013, 36, Calendar.WEDNESDAY, 3, groupB, teacher4, subjectMath)
+    val TimeentryPhys9 = new MTimetableEntry(2013, 36, Calendar.WEDNESDAY, 2, groupB, teacher1, subjectPhysics)
+    val TimeentryChem9 = new MTimetableEntry(2013, 36, Calendar.WEDNESDAY, 1, groupB, teacher3, subjectChemistry)
+    val TimeentryEngl9 = new MTimetableEntry(2013, 36, Calendar.WEDNESDAY, 4, groupB, teacher2, subjectEnglish)
 
 
     TimeentryMath1.save()
@@ -125,27 +164,38 @@ object TestDataProvider {
     TimeentryEngl2.save()
     TimeentryEngl3.save()
 
+    TimeentryMath4.save()
+    TimeentryPhys4.save()
+    TimeentryChem4.save()
+    TimeentryEngl4.save()
+    TimeentryMath5.save()
+    TimeentryPhys5.save()
+    TimeentryChem5.save()
+    TimeentryEngl5.save()
+    TimeentryMath6.save()
+    TimeentryPhys6.save()
+    TimeentryChem6.save()
+    TimeentryEngl6.save()
 
 
+    TimeentryMath7.save()
+    TimeentryPhys7.save()
+    TimeentryChem7.save()
+    TimeentryEngl7.save()
+    TimeentryMath8.save()
+    TimeentryPhys8.save()
+    TimeentryChem8.save()
+    TimeentryEngl8.save()
+    TimeentryMath9.save()
+    TimeentryPhys9.save()
+    TimeentryChem9.save()
+    TimeentryEngl9.save()
 
-    groupA.getTimetable_entries.add(TimeentryChem1)
-    groupA.getTimetable_entries.add(TimeentryPhys1)
-    groupA.getTimetable_entries.add(TimeentryMath1)
-    groupA.getTimetable_entries.add(TimeentryEngl1)
-    groupB.getTimetable_entries.add(TimeentryChem2)
-    groupB.getTimetable_entries.add(TimeentryPhys2)
-    groupB.getTimetable_entries.add(TimeentryMath2)
-    groupB.getTimetable_entries.add(TimeentryEngl2)
-    groupC.getTimetable_entries.add(TimeentryChem3)
-    groupC.getTimetable_entries.add(TimeentryPhys3)
-    groupC.getTimetable_entries.add(TimeentryMath3)
-    groupC.getTimetable_entries.add(TimeentryEngl3)
-
-    val Grade1 = new Grade(student5,TimeentryMath1,1,1,"Extra task")
-    val Grade2 = new Grade(student11,TimeentryPhys3,2,2,"Extra task")
-    val Grade3 = new Grade(student15,TimeentryChem2,3,1,"Extra task")
-    val Grade4 = new Grade(student3,TimeentryPhys1,4,4,"Extra task")
-    val Grade5 = new Grade(student10,TimeentryEngl3,5,1,"Extra task")
+    val Grade1 = new MGrade(student5, TimeentryMath1, 1, "Extra task")
+    val Grade2 = new MGrade(student11, TimeentryPhys3, 2, "Extra task")
+    val Grade3 = new MGrade(student15, TimeentryChem2, 3, "Extra task")
+    val Grade4 = new MGrade(student3, TimeentryPhys1, 4, "Extra task")
+    val Grade5 = new MGrade(student10, TimeentryEngl3, 5, "Extra task")
 
 
     Grade1.save()
@@ -154,10 +204,10 @@ object TestDataProvider {
     Grade4.save()
     Grade5.save()
 
-    val Homework1 = new Homework(TimeentryMath1,"Chinese Reminders Theorem")
-    val Homework2 = new Homework(TimeentryChem2,"Blue ctystals. Decorative blue crystals.")
-    val Homework3 = new Homework(TimeentryPhys3,"Newton lawlz")
-    val Homework4 = new Homework(TimeentryEngl3,"How have you spent your summer?")
+    val Homework1 = new MHomework(TimeentryMath1, "Chinese Reminders Theorem")
+    val Homework2 = new MHomework(TimeentryChem2, "Blue ctystals. Decorative blue crystals.")
+    val Homework3 = new MHomework(TimeentryPhys3, "Newton lawlz")
+    val Homework4 = new MHomework(TimeentryEngl3, "How have you spent your summer?")
 
     Homework1.save()
     Homework2.save()

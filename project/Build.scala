@@ -14,4 +14,5 @@ object ApplicationBuild extends Build {
   )
 
   val main = Project(appName, appVersion, appDependencies).settings()
+
 }

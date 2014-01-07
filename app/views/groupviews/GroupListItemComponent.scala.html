@@ -7,7 +7,7 @@
     <th> <a href="@controllers.routes.GroupController.requestEditGroup(group.getGroup_id)"> @group.getName </a></th>
     <th> @group.getStudents.size </th>
     @if(editable){
-        <th> <a href="@controllers.routes.GroupController.requestEditGroup(group.getGroup_id)">Edit</a></th>
+        <th> <a href="@controllers.routes.GroupController.requestEditGroup(group.getGroup_id)"><span class="glyphicon glyphicon-th ibtn btn-icon"></span></a></th>
     }
-    <th> <a href="@controllers.routes.TimetableController.showTimetableForGroup(group.getGroup_id)">Timetable</a></th>
 </tr>
+

@@ -7,45 +7,40 @@
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 
 
-
-
-
-
 /*  my own styles */
 
 .for-pop{
-    margin: 3px;
+    margin:3px;
 }
 
 .alert-xs {
-  padding: 3px;
-  margin: 5px 3px
-  border: 1px solid transparent;
-  border-radius: 4px;
+    padding: 3px;
+    margin: 5px 3px
+    border: 1px solid transparent;
+    border-radius: 4px;
 }
 
-img.avatar{
+img.{
     width: 140px;
     height: 140px;
 }
 
-.right{
+.myRight{
     position:absolute;
-    right:0px;    
+    right:0px;
     margin: 0 15px;
 }
 
 .center{
     margin-left:auto;
     margin-right:auto;
-    width:70%;
-    
+    /* width:70%;   */
 }
 
 
 .list-item{
     color: #d5d5d5;
-    
+
 }
 
 .list-item:hover{
@@ -55,7 +50,7 @@ img.avatar{
 
 .scrollable{
     overflow: scroll;
-    height: 300px;
+    height: 400px;
     width: 100%;
 }
 
@@ -69,81 +64,88 @@ img.avatar{
 
 
 .color-icon{
-  font-size: 18px !important;
-  color: #05b308;    
+    font-size: 18px !important;
+    color: #05b308;
 }
 
 .color-icon:hover,
 .color-icon:focus {
-  color: #026c0f;
-  text-decoration: none;
+    color: #026c0f;
+    text-decoration: none;
 }
 
 
 .ibtn {
-  display: inline-block;
-  padding: 1px ;
-  margin-bottom: 0;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 1.428571429;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  color: #acaaaa;
-  
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-       -o-user-select: none;
-          user-select: none;
+    display: inline-block;
+    padding: 1px ;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    color: #acaaaa;
+
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 
+.ibtn-lg {
+
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 20px;
+}
+
 .btn-icon:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
 }
 
 .btn-icon:hover,
 .ibtn:hover,
 .btn-icon:focus {
-  color: #484747;
-  text-decoration: none;
+    color: #484747;
+    text-decoration: none;
 }
 
 .btn-icon:active,
 .btn-icon.active {
-  background-image: none;
-  outline: 0;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-          box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 
 .btn-icon.disabled,
 .btn-icon[disabled],
 fieldset[disabled] .btn-icon {
-  pointer-events: none;
-  cursor: not-allowed;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-          box-shadow: none;
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 
 th .btn-icon{
     visibility: hidden;
-   
+
 }
 th:hover .btn-icon{
     display: inline-block;
-    visibility: visible;    
+    visibility: visible;
 }
 
 .table-hover tr:hover .btn-icon{

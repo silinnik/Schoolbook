@@ -4,7 +4,7 @@ import play.api.Routes
 
 
 /**
- * Date: 12/17/13
+ * This class handles system tasks
 */
 object SystemController extends Controller{
 
@@ -19,7 +19,14 @@ object SystemController extends Controller{
 
     Ok(
       Routes.javascriptRouter("jsRoutes")(
-        GroupController.processRemoveGroups
+        GroupController.processRemoveGroups,
+        MainController.openModalWindow,
+        MainController.ajax_submitForm,
+        TimetableController.ajax_GroupTimetableEntryFormSubmit,
+        TimetableController.ajax_GroupTimetableEntryFormRequest,
+        TimetableController.ajax_TimetableGradesRequest,
+        TimetableController.ajax_TimetableGradesSubmit
+
       )
     ).as("text/javascript")
 

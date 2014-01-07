@@ -12,21 +12,16 @@ import java.sql.Date;
 public class TimetableEntryFactory {
 
     public static TimetableEntry TimetableEntry(int day, int number, int groupId, int teacherId, int subjectId){
-        Group group = GroupRepository.byId(groupId).get();
-        Teacher teacher = UserRepository.findTeacherById(teacherId).get();
-        Subject subject = SubjectRepository.byId(subjectId).get();
-        return new TimetableEntry(day,number,group,teacher,subject);
+
+        return new TimetableEntry(day,number,groupId,teacherId,subjectId);
     }
 
     public static TimetableEntry TimetableEntry(int id,int day, int number, int groupId, int teacherId, int subjectId){
         TimetableEntry entry = TimetableEntryRepository.byId(id).get();
-        Group group = GroupRepository.byId(groupId).get();
-        Teacher teacher = UserRepository.findTeacherById(teacherId).get();
-        Subject subject = SubjectRepository.byId(subjectId).get();
 
-        entry.setGroup(group);
-        entry.setTeacher(teacher);
-        entry.setSubject(subject);
+        entry.setGroup(groupId);
+        entry.setTeacher(teacherId);
+        entry.setSubject(subjectId);
         entry.setDay(day);
         entry.setNumber(number);
 

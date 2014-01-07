@@ -1,31 +1,36 @@
 @(userArray : Array[User], addCheckboxes : Boolean = false)(implicit request: play.api.mvc.Request[Any])
 @import models._
 
+<h2>List of users</h2>
+
                     <div class="row">
-                        <div class="col-xs-3">
-                            <input type="text" class="form-control" placeholder="Name">
-                        </div>
-                        <div class="col-xs-3">
-                            <input type="text" class="form-control" placeholder="Last name">
-                        </div>
-                        <div class="col-xs-2">
-                            <input type="text" class="form-control" placeholder="role">
-                        </div>
-                        <div class="col-xs-4">
-                            <input type="submit" name="submit" class="btn btn-primary" value="Go!">
-                        </div>
+                        <form action="" method="get" class="form-inline" role="form">
+                            <div class="col-xs-3" >
+                                <input type="text" class="form-control" placeholder="Name">
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="text" class="form-control" placeholder="Last name">
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="text" class="form-control" placeholder="role">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="submit" name="submit" class="btn btn-primary" value="Search">
+                            </div>
+                        </form>
                     </div>
 
-                    <p>
-                    <table class="table table-striped">
+                    <div class='table scrollable'>
+                    <table class="table table-hover">
                         <thead>
                         <tr>
-                            @if(addCheckboxes){ <th>&nbsp;</th> }
-                            <th> № </th>
+                            @if(addCheckboxes){ <th> <span class='glyphicon glyphicon-check'></span></th> }
+                            <th> ID </th>
                             <th> Last Name </th>
                             <th> First Name </th>
                             <th> Username </th>
                             <th> Role </th>
+                            <th> <span class="glyphicon glyphicon-wrench"> </span> </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,8 +43,9 @@
                             <th> @user.getName </th>
                             <th> @user.getLogin </th>
                             <th> @user.getUserType  </th>
+                            <th> <a href="@controllers.routes.UserController.requestEditUser(user.getUser_id) "><span class="glyphicon glyphicon-wrench ibtn btn-icon"> </span></a> </th>
                         </tr>
                         }
                         </tbody>
                     </table>
-                    </p>
+                    </div>
