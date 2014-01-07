@@ -1,6 +1,6 @@
 @(pairs: Set[(MStudent, Option[MGrade])])
 
-<table class="table grades-table">
+<table class="table grades-table table-hover">
     <thead>
         <tr>
             <th>Name</th>
@@ -45,7 +45,12 @@
     </tbody>
 
 </table>
-<button class="btn-save-grades btn btn-info" data->Save</button>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button class="btn-save-grades btn btn-info" data->Save</button>
+</div>
+
 
 
 <script type="text/javascript" src="../js/json2.js"> </script>

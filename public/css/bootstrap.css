@@ -20,7 +20,7 @@
     border-radius: 4px;
 }
 
-img.{
+.img {
     width: 140px;
     height: 140px;
 }
@@ -1053,8 +1053,9 @@ pre code {
 .col-lg-12 {
   position: relative;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 5px;
+  padding-left: 5px;
+  text-align: center;
 }
 
 .col-xs-1,
@@ -5490,12 +5491,12 @@ a.list-group-item.active > .badge,
 
 @media screen and (min-width: 768px) {
   .jumbotron {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 3px;
+    padding-bottom: 3px;
   }
   .container .jumbotron {
-    padding-right: 30px;
-    padding-left: 30px;
+    padding-right: 3px;
+    padding-left: 3px;
   }
   .jumbotron h1,
   .jumbotron .h1 {
